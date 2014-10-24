@@ -116,6 +116,7 @@ Independent component analysis, ICA, needs whitening the input signals.
 A\hat{x}=\lambda \hat{x}
 \end{equation}
 The sign of $\lambda$ and $\hat{x}$ are not unique. And $\lambda$ and $\hat{x}$ are scalable.
+
 \item A symmetric square matrix, $A=A^T$, can be eigen decomposition which is a special form of 
 singular value decomposition, SVD, of a m*n matrix.
 \begin{equation}
@@ -123,6 +124,7 @@ singular value decomposition, SVD, of a m*n matrix.
 A = PDP^{T}\ or\ U \Lambda U^T\
 \end{equation}
 where D or $\Lambda$ is a diagonal matrix whose diagonal components are eigen values.\\
+
 \begin{equation}
 \label{eq:diagm}
 D=\Lambda= diag(\lambda_{ii}) = \begin{pmatrix}
@@ -140,6 +142,11 @@ P or U is invertable and nonsigular. $det(P) \neq0$
 I=P* P^{-1} = P* P^T=U* U^{-1} = U* U^T
 \end{equation}
 
+This decomposition \eqref{eq:PDP} is not unique, because $\Lambda$ and $U$ are not unique.
+When the diagonal elements, eigen value, of the diagonal matrix, $\Lambda$, are changed in the order. 
+$U$ is also changed .
+
+
 \item The diagonal matrix properties:\\
 $det(D) = \prod_{i}^{} \lambda_{ii}$\\
 \begin{equation}
@@ -150,7 +157,7 @@ D^{-1}=\Lambda^{-1}=diag(\lambda_{ii}^{-1})=
        0 			& 1/\lambda_{11} & ..		&	0 	\\[0.3em]
        .			& .				& ..	&	.	\\[0.3em]
        0 			& 0 			& ..	&	1/\lambda_{nn}\\[0.3em]
-     \end{pmatrix}
+\end{pmatrix}
 \end{equation}
 \item standard deviation and variance:
 \begin{equation}
@@ -180,32 +187,73 @@ y_{i}=(Y_i-\bar{Y})
 \end{equation}
 Variance of X, $VAR(X)=Cov(X,X)=\sigma^{2}$, \ is a degenerated form of covariance.\\
 
-\item covariance matrix : 
-In probability theory and statistics, a covariance matrix (also known as dispersion matrix or variance–covariance matrix) 
-is a matrix whose element in the i, j position is the covariance between the i th and j th elements of a random vector 
-(that is, of a vector of random variables). Each element of the vector is a scalar random variable, 
-either with a finite number of observed empirical values or with a finite or infinite number of 
-potential values specified by a theoretical joint probability distribution of all the random variables.
-\cite{wiki-covariance}
-
-X is a square n*n symmetric matrix, so it's also a positive-definite matrix.
-
+\item covariance matrix: is a measure of the extent to which corresponding elements from two sets 
+of ordered data move in the same direction. We use the following formula to compute covariance.
+\cite{wiki-covariance}\cite{STAT-covariance}\\
+\\Let $X_i$ be the column vector in a Matrix \textbf{X}=
+$\begin{pmatrix} X_1 & X_2 &... & X_c \end{pmatrix}$\\
+The covariance matrix of \textbf{X} is:\\
+$M_{cxc} = Cov(\textbf{X})=$
 \begin{equation}
-Cov[AX] = ACov[X]A^{T}\\\\
-Y = \Lambda^{-1/2} U^{T} X,\\
-let\ W = \Lambda^{-1/2} U^{T}.\ We\ call\ W\ "whitening"\ matrix.\\
-Y = WX\\
-\Lambda^{-1/2} = diag(1/\sqrt{\Lambda i i})\\\\
-Cov[Y] = Cov[(\Lambda^{-1/2} U^{T}) X]=
-(\Lambda^{-1/2} U^{T}) Cov[X] (\Lambda^{-1/2} U^{T}) ^T=\\\\
-(\Lambda^{-1/2} U^{T})  U \Lambda U^{T} (\Lambda^{-1/2} U^{T}) ^T=
-\Lambda^{-1/2} (U^{T}  U) \Lambda U^{T} (\Lambda^{-1/2} U^{T}) ^T=\\
-\Lambda^{-1/2} (I) \Lambda U^{T} ({U^{T}}^T{\Lambda^{-1/2}}^T)=
-\Lambda^{-1/2} \Lambda U^{T} (U{\Lambda^{-1/2}}^T)=
-\Lambda^{-1/2} \Lambda (U^{T} U) {\Lambda^{-1/2}}^T=\\
-\Lambda^{-1/2} \Lambda (I) {\Lambda^{-1/2}}^T=
-\Lambda^{-1/2} \Lambda \Lambda^{-1/2}=\\
+\label{eq:covarm1}
+\begin{pmatrix}
+       \sum x_1^{2}/N 	& \sum x_1 x_2/N 	& ...	& \sum x_1 x_c/N	\\[0.3em]
+       \sum x_2 x_1/N 	& \sum x_2 x_2/N 	& ...	& \sum x_2 x_c/N	\\[0.3em]
+       ...		& ...			& ...	&	...		\\[0.3em]
+       \sum x_c x_1/N 	& \sum x_c x_2/N 	& ...	& \sum x_c^{2}/N	\\[0.3em]
+\end{pmatrix}
 \end{equation}
+where\\
+N is the dim of the column vector $X_i$.\\
+$x_i$ is a deviation score from the ith data set.\\
+$\sum x_i^2 / N$ is the variance of elements from the ith data set.\\
+$\sum x_i x_j / N$ is the covariance for elements from the ith and jth data sets.\\
+
+\item Properties of Covariance matrix, Cov(\textbf{X}):\\
+\textbf{square and symmetric}: $M_{cxc}=M_{cxc}^T$ ,\ because $\sum x_i x_j / N$ and $\sum x_j x_i / N$ are the same. Refer to \eqref{eq:PDP}
+\begin{equation}
+\label{eq:covd}
+Cov(\textbf{X}) = \Sigma(\textbf{X}) = U\Lambda U^T
+\end{equation}
+
+\textbf{linearity of expectation matrix}: Let \textbf{X} be a random vector with covariance matrix
+$\Sigma(\textbf{X})$, and let A be a matrix that can act on \textbf{X}. The covariance matrix of the vector A\textbf{X} is:
+\begin{equation}
+\label{eq:covlinear}
+\Sigma(A\textbf{X}) = A\Sigma(\textbf{X})A^{T}
+\end{equation}
+
+\item whiten: Refer to \eqref{eq:covd},  A \textbf{whitening} matrix W is defined as
+\begin{equation}
+\label{eq:whitem}
+W=\Lambda^{-1/2} U^{T}
+\end{equation}
+This W is not unique, because $\Lambda$ and $U^T$ are not unique.
+When the diagonal elements, eigen value, of the diagonal matrix, $\Lambda$, are changed in the order. 
+$U$ is also changed .
+
+Let
+\begin{equation}
+\label{eq:whitened}
+Y = W*\textbf{X}= (\Lambda^{-1/2} U^{T}) \textbf{X}
+\end{equation}
+be a \textbf{whitened matrix} of \textbf{X}.
+Refer to the equation \eqref{eq:covlinear}
+\[
+\Sigma (Y)=\Sigma (\Lambda^{-1/2} U^{T}) \textbf{X} = 
+(\Lambda^{-1/2} U^{T})(\Sigma (\textbf{X})) (\Lambda^{-1/2} U^{T})^{T}
+\]
+$=\Lambda^{-1/2} (U^{T}  U) \Lambda U^{T} (\Lambda^{-1/2} U^{T}) ^T$\\
+$=\Lambda^{-1/2} (I) \Lambda U^{T} ({U^{T}}^T{\Lambda^{-1/2}}^T)$\\
+$=\Lambda^{-1/2} \Lambda U^{T} (U{\Lambda^{-1/2}}^T)$\\
+$=\Lambda^{-1/2} \Lambda (U^{T} U) {\Lambda^{-1/2}}^T$\\
+$=\Lambda^{-1/2} \Lambda (I) {\Lambda^{-1/2}}^T$\\
+$=\Lambda^{-1/2} \Lambda \Lambda^{-1/2}$\\
+$=\Lambda^{-1/2 + 1 + -1/2}$\\
+$=I$\\
+So Y is whitened, because it's covariance matrix is a Identity matrix.
+All column vectors in Y has no correlation!
+
 \end{compactitem}
 
 Maecenas sed ultricies felis. Sed imperdiet dictum arcu a egestas. 
