@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{letltxmacro} 
+%Gummi|061|=)
+\title{\textbf{ICA Study Report}}
+\author{Thomas Tsai\\
+		Some Body}
+\date{}
+\begin{document}
+
+\maketitle
+
+\section{Before you start}
+
+inline:$ \frac{2}{\|w\|}$ \\[2em]
+
+Display:
+\[ \frac{2}{\|w\|} \]
+
+Whitening:
+
+\begin{equation}
+Cov[AX] = ACov[X]A^{T}\\\\
+Cov[X] = \sum = U \Lambda U^{T},\ \Lambda=diag(\lambda_{i_i})=\Lambda ^T\\\\
+\end{equation}
+\[
+We\ define:\\
+Y = \Lambda^{-1/2} U^{T} X,\\
+let\ W = \Lambda^{-1/2} U^{T}.\ We\ call\ W\ "whitening"\ matrix.\\
+Y = WX\\
+\Lambda^{-1/2} = diag(1/\sqrt{\Lambda i i})\\\\
+Cov[Y] = Cov[(\Lambda^{-1/2} U^{T}) X]=
+(\Lambda^{-1/2} U^{T}) Cov[X] (\Lambda^{-1/2} U^{T}) ^T=\\\\
+(\Lambda^{-1/2} U^{T})  U \Lambda U^{T} (\Lambda^{-1/2} U^{T}) ^T=
+\Lambda^{-1/2} (U^{T}  U) \Lambda U^{T} (\Lambda^{-1/2} U^{T}) ^T=\\
+\Lambda^{-1/2} (I) \Lambda U^{T} ({U^{T}}^T{\Lambda^{-1/2}}^T)=
+\Lambda^{-1/2} \Lambda U^{T} (U{\Lambda^{-1/2}}^T)=
+\Lambda^{-1/2} \Lambda (U^{T} U) {\Lambda^{-1/2}}^T=\\
+\Lambda^{-1/2} \Lambda (I) {\Lambda^{-1/2}}^T=
+\Lambda^{-1/2} \Lambda \Lambda^{-1/2}=\\
+]\
+
+\begin{displaymath}
+  MR(e) = \prod_{(R_i\cdot ID, R_j\cdot ID)} \\
+  \sqrt{\frac{a}{b}} \\
+  Y = \Lambda^{-1/2} U^{T} X,
+\end{displaymath}
+
+
+You are now using Gummi 0.6.1. Many new exciting features have been added to the 0.6 series. The document editor is now a tabbed instance, allowing multiple documents to be worked on simultaneously. Using the new projects menu, you can group files together for easy access. 
+
+Support for two high-level {\LaTeX} building systems, \emph{rubber}\footnote{https://launchpad.net/rubber/} \& \emph{latexmk}\footnote{http://www.phys.psu.edu/{\textasciitilde}collins/software/latexmk-jcc/} has been added to this release as well. Your preferred typesetter can be configured through the Compilation tab in the Preferences menu. Typesetters that are not installed on your system will not be selectable. 
+
+Added for your viewing convenience is a continuous preview mode for the PDF. This mode is enabled by default, but can also be disabled through the \emph{(View $\rightarrow$ Page layout in preview)} menu. Complementary to this feature is SyncTeX integration, which allows you to synchronize the position in your editor with the PDF preview. 
+
+\section{Feedback}
+We hope you will enjoy using this release as much as we enjoyed creating it. If you have comments, suggestions or wish to report an issue you are experiencing - contact us at: \emph{http://gummi.midnightcoding.org}.
+
+\section{One more thing}
+If you are wondering where your old default text is; it has been stored as a template. The template menu can be used to access and restore it. 
+
+\end{document}
