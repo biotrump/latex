@@ -1,5 +1,5 @@
-%\documentclass[a4paper,10pt]{report}
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,10pt]{report}
+%\documentclass[a4paper,12pt]{article}
 \usepackage[utf8]{inputenc}
 
 %----------------------------------------------------------------------------------------
@@ -74,6 +74,9 @@
 %\let\endmyBib\endthebibliography 
 %\renewcommand\thebibliography[1]{\ifx\relax#1\relax\else\myBib{#1}\fi}
 
+\setcounter{secnumdepth}{5} % seting level of numbering (default for "report" is 3). With ''-1'' you have non number also for chapters
+%\setcounter{tocdepth}{5} % if you want all the levels in your table of contents
+
 \begin{document}
 \maketitle
 %\thispagestyle{fancy} % All pages have headers and footers
@@ -86,35 +89,39 @@ Two Applications are proposed. One is baby monitor and the other is smart glass.
 
 \end{abstract}
 
-\section{Baby Monitor}
-\textbf{Sudden infant death syndrome (SIDS)} also known as \textbf{cot death} or \textbf{crib death} is the sudden death of an infant 
-that is not predicted by medical history and remains unexplained after a thorough forensic autopsy and 
-detailed death scene investigation. 
-Infants are at the highest risk for SIDS during sleep. Typically the infant is found dead after having been put to bed, 
-and exhibits no signs of having struggled.\cite{wiki-SIDS}\\
+\chapter{Baby Monitor}
+\section {background}
+\textbf{Sudden infant death syndrome (SIDS)} also known as \textbf{cot death} or
+\textbf{crib death} is the sudden death of an infant that is not predicted by 
+medical history and remains unexplained after a thorough forensic autopsy and 
+detailed death scene investigation. Infants are at the \textbf{highest risk for 
+SIDS during sleep}. Typically the infant is found dead after having been put 
+to bed, and exhibits \textbf{no signs of having struggled}.\cite{wiki-SIDS}\\
 
 \begin{figure}[h]
   \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{paby-stand}
-  \caption{The set of baby monitor }\cite{paby-monitor}
-  \label{fig:paby-stand}
+	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{baby-sids-prevention}
+  \caption{SIDS Preventions}\cite{SIDS-healthystartorange}
+  \label{fig:sids}
 \end{figure}
 
-\begin{figure}[h]
-  \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{paby-camera}
-  \caption{The camera of the baby monitor}\cite{paby-monitor}
-  \label{fig:paby-camera}
-\end{figure}
-
+\section {The solutions}
+\label {TheSolutions}
+Refer to \cite{Poh2011Advancements}\cite{Wu12Eulerian}, we develop the baby monitor camera
+with computer vision to provide the following features:
 \begin{figure}[h]
   \centering
 	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{mit-vidmag-teaser}
-  \caption{The camera of the baby monitor}\cite{Wu12Eulerian}\cite{midvidmag-youtube}
+  \caption{Mit researches for hear beat detection}\cite{Wu12Eulerian}\cite{midvidmag-youtube}
   \label{fig:mit-vidmag}
 \end{figure}
 
-Refer to \cite{Poh2011Advancements}\cite{Wu12Eulerian}, we develop the baby monitor with computer vision to provide the following features:
+\begin{figure}[h]
+  \centering
+	\includegraphics[width=0.8\textwidth, keepaspectratio=true]{baby-pr}
+  \caption{baby pulse rate and respiratory rate}\cite{Hao-Yu-2013}
+  \label{fig:baby-pr}
+\end{figure}
 
 \begin{compactitem}
 \item motion detection
@@ -131,17 +138,52 @@ Refer to \cite{Poh2011Advancements}\cite{Wu12Eulerian}, we develop the baby moni
 \begin{compactitem}
 \item expression recognition
 \end{compactitem}
+\begin{compactitem}
+\item audio/voice recognition
+\end{compactitem}
+\begin{compactitem}
+\item room temperature and air humidity monitor
+\end{compactitem}
+\begin{compactitem}
+\item ambient light strength monitor
+\end{compactitem}
 
-\begin{figure}[b]
+\section{The baby monitor camera}
+In order to implement the functions listed in section \ref{TheSolutions}, the baby monitor needs some cmos sensors:
+\begin{compactitem}
+\item RGB cmos sensor
+\end{compactitem}
+\begin{compactitem}
+\item IR CMOS sensor
+\end{compactitem}
+\begin{compactitem}
+\item Ambient Light Sensor
+\end{compactitem}
+\begin{compactitem}
+\item LED Light Source
+\end{compactitem}
+\begin{compactitem}
+\item InfraRed LED Light Source
+\end{compactitem}
+
+\begin{figure}[ht]
   \centering
-	\includegraphics[width=0.8\textwidth, keepaspectratio=true]{baby-pr}
-  \caption{baby pulse rate and respiratory rate}\cite{Hao-Yu-2013}
-  \label{fig:baby-pr}
+	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{paby-stand}
+  \caption{The set of baby monitor }\cite{paby-monitor}
+  \label{fig:paby-stand}
 \end{figure}
+
+\begin{figure}[ht]
+  \centering
+	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{paby-camera}
+  \caption{The camera of the baby monitor}\cite{paby-monitor}
+  \label{fig:paby-camera}
+\end{figure}
+
 
 %Figure~\ref{fig:paby-camera} shows a photograph of a gull.\cite{paby-monitor}
 \clearpage
-\section{Smart Glass}
+\chapter{Smart Glass}
 We will focus on industrial and medical smart glass development with different light spectra.
 
 \begin{figure}[ht]
