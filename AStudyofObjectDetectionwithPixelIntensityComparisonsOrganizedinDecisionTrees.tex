@@ -51,6 +51,7 @@
 
 %http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
 \usepackage{graphicx}
+%\usepackage{epsfig}
 \usepackage{subcaption}
 \graphicspath{ {dft/} }
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
@@ -64,6 +65,13 @@
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
+
+%\usepackage[]{algorithm2e}
+\usepackage{algorithm}
+%\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm
 
 %\usepackage{titlesec} % Allows customization of titles
 %\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
@@ -89,6 +97,7 @@
 \date{}
 
 %----------------------------------------------------------------------------------------
+\def\BState{\State\hskip-\ALG@thistlm}
 
 \begin{document}
 
@@ -116,18 +125,7 @@ Pixel intensity comparison binary test. \cite{DBLP:journals/corr/abs-1305-4537} 
 %\onecolumn
 
 \section{Introduction}
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=\textwidth, keepaspectratio=true]{pair-wise-ordinal.jpg}
-  \caption{Ordinal measure of relationship between two regions. 
-  An arrow points from the darker region to the brighter one. Left: Region A is darker than B}
- \label{fig:pair-wise-ordinal}
-\end{figure}
-
-
-\lettrine[nindent=0em,lines=3]{I}\ am trying to list all the possible proofs.
-%\lipsum[2-3] % Dummy text
+\lettrine[nindent=0em,lines=2]{I}\ am trying to list all the possible proofs.
 
 \section{Weighted Mean Squared Error: WMSE}
 A training data is a set $\{(I_s,v_s,w_s) : s=1,2,..,S\}$
@@ -136,14 +134,14 @@ where $v_s$ is the \textbf{ground truth value} associated with image $I_s$ and $
 
 \begin{equation}
 \label{eq:bintest}
-    bintest(I;l_1,l_2)= 
+    bintest(I;l_1,l_2)=
 \begin{cases}
-    0,		& \text{if } I(l_1)\leq I(l_2)\\
+    0,		& \text{if} I(l_1)\leq I(l_2)\\
     1,      & \text{otherwise}
 \end{cases}
 \end{equation}\\
 \\ A \textbf{bintest}, $f_i$, has \textbf{only two values: 0 or 1}, so a image will be classified as 0 or 1 by the \textbf{bintest}. If an image is classified to "0", it's in class/cluster $C_0$, otherwise it's in class/cluster $C_1$. \\
-\\ Scalar $v_0$ and $v_1$ are \textbf{weighted averages of the ground truths} in $C_0$ and $C_1$, respectively.
+\\ Scalar $\bar{v_0}$ and $\bar{v_1}$ are \textbf{weighted averages of the ground truths} in $C_0$ and $C_1$, respectively.
 
 \begin{equation}
 \label{eq:WAGT0}
@@ -153,72 +151,72 @@ where $v_s$ is the \textbf{ground truth value} associated with image $I_s$ and $
 \frac{\sum_{i=1}^{\| C_0 \|}  w_i v_i}
 {\sum_{i=1}^{\| C_0 \|}  w_i}
 \]
-\begin{equation}
-\label{eq:WAGT1}
-\bar{v_1}=\frac{\sum\nolimits_{(I,v,w) \in C_1} w_i v_i} { \sum\nolimits_{(I,v,w) \in C_1} w_i}=
-\end{equation}
+
+Let $\| C_{0} \|=n$.\\
 \[
-\frac{\sum_{i=1}^{\| C_1 \|}  w_i v_i}
-{\sum_{i=1}^{\| C_1 \|}  w_i}
+\bar{v_0}=\frac{\sum_{i=1}^{\| C_0 \|}  w_i v_i}
+{\sum_{i=1}^{\| C_0 \|}  w_i}=\\
 \]
 
-The ground truth, $v_s$, of a positive sample is annotated with $+1$ and 
-a negative sample is annotated with $-1$.\\
+\begin{equation}
+\label{eq:WAGT0-1}
+\frac{\sum_{i=1}^{n}  w_i v_i}
+{\sum_{i=1}^{n}  w_i}
+\end{equation}
+\\
 
+Let $\| C_{1} \|=m$.\\
+\begin{equation}
+\label{eq:WAGT1}
+\bar{v_1}=\frac{\sum\nolimits_{(I,v,w) \in C_1} w_i v_i} { \sum\nolimits_{(I,v,w) \in C_1} w_i} =
+\frac{\sum_{i=1}^{\| C_1 \|}  w_i v_i}
+{\sum_{i=1}^{\| C_1 \|}  w_i}=\\
+\frac{\sum_{i=1}^{m}  w_i v_i}
+{\sum_{i=1}^{m}  w_i}
+\end{equation}
+\\
 
 \begin{equation}
 \label{eq:WMSE}
-\text{WMSE}=
-\sum\nolimits_{(I,v,w) \in C_0} w (v-\bar{v_0})^2 + 
+\text{WMSE}=\text{WMSE0} + \text{WMSE1}=
+\sum\nolimits_{(I,v,w) \in C_0} w (v-\bar{v_0})^2 +
 \sum\nolimits_{(I,v,w) \in C_1} w (v-\bar{v_0})^2
 \end{equation}
+Why not variance of the C0 and C1 as the error?
 
-\[\sum_{(I,v,w) \in C_0} w (v-\bar{v_0})^2=\sum_{i=1}^{\| C_0 \|} w_i (v_i - \bar{v_0})^2=
-\sum_{i=1}^{\| C_0 \|} w_i (v_i^2 - 2v_i \bar{v_0} + \bar{v_0}^2)\]\\
+\[\text{WMSE0}=\sum_{(I,v,w) \in C_0} w (v-\bar{v_0})^2=\sum_{i=1}^{\| C_0 \|} w_i (v_i - \bar{v_0})^2=
+\sum_{i=1}^{\| C_0 \|} w_i (v_i^2 - 2v_i \bar{v_0} + \bar{v_0}^2)=\]
 
-Let $\| C_{0} \|=n$.\\
-
-\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0}\sum_{i=1}^{n} w_i v_i + 
+\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0}\sum_{i=1}^{n} w_i v_i +
 \bar{v_0}^2\sum_{i=1}^{n} w_i=\]
 
-Refer to \eqref{eq:WAGT0}:
-\[
-\sum_{i=1}^{\| C_0 \|}  w_i v_i = \bar{v_0} \cdot \sum_{i=1}^{\| C_0 \|}  w_i
-\]
-
-\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0} (\bar{v_0} \cdot \sum_{i=1}^n w_i) + 
+\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0} (\bar{v_0} \cdot \sum_{i=1}^n w_i) +
 \bar{v_0}^2\sum_{i=1}^{n} w_i=\]
 
-\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0} \bar{v_0} \cdot \sum_{i=1}^n w_i 
+\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0} \bar{v_0} \cdot \sum_{i=1}^n w_i
 + \bar{v_0}^2\sum_i^n w_i=\]
 
-\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0}^2 \sum_{i=1}^n w_i  + 
+\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0}^2 \sum_{i=1}^n w_i  +
 \bar{v_0}^2 \sum_{i=1}^n w_i=\]
 
 \[\sum_{i=1}^{n} w_i v_i^2 - \bar{v_0}^2 \sum_{i=1}^n w_i = \]
-The ground truth, $v_i$, is $+1$ or $-1$, so ${v_i}^2=1$.\\
+\\
+Refer to \eqref{eq:WAGT0-1}:
+\[\sum_{i=1}^{n} w_i v_i^2 - (\frac{\sum_{i=1}^{n}  w_i v_i}
+{\sum_{i=1}^{n}  w_i})^2 \sum_{i=1}^n w_i = \]
 
 \begin{equation}
 \label{eq:WMSE00}
-\sum_{i=1}^{n} w_i - \bar{v_0}^2 \sum_{i=1}^n w_i =
-(1 - \bar{v_0}^2) \cdot \sum_{i=1}^{n} w_i = WMSE0
-\end{equation}
-
-If $\sum_{i=1}^{n} w_i =1$ , \eqref{eq:WMSE00} will be:
-\begin{equation}
-\label{eq:WMSE0}
-\text{WMSE0} = (1 - \bar{v_0}^2) \cdot \sum_{i=1}^{n} w_i = 1-\bar{v_0}^2
+\sum_{i=1}^{n} w_i v_i^2 - \frac{(\sum_{i=1}^{n} w_i v_i)^2}
+{\sum_{i=1}^{n}  w_i} = WMSE0
 \end{equation}
 
 \begin{equation}
 \label{eq:WMSE1}
-\text{WMSE1} = (1 - \bar{v_1}^2) \cdot \sum_{i=1}^{m} w_i = 1-\bar{v_1}^2
+\sum_{i=1}^{m} w_i v_i^2 - \frac{(\sum_{i=1}^{m} w_i v_i)^2}
+{\sum_{i=1}^{m}  w_i} = WMSE1
 \end{equation}
 
-\begin{equation}
-\label{eq:WMSE_01}
-\text{WMSE} = \text{WMSE1} + \text{WMSE2} = (1-\bar{v_0}^2) + (1-\bar{v_1}^2) 
-\end{equation}\\
 
 If we limit the depth of the tree to D and we consider
 B binary tests at each internal node, the training time is
@@ -234,10 +232,97 @@ speed scales as O(D).
 We use the \textbf{GentleBoost} algorithm \cite{Friedman98additivelogistic}, a modification of the better known \textbf{real AdaBoost}, to generate a discriminative ensemble by sequentially fitting a decision tree to an appropriate least squares problem.
 We can also use \textbf{Modest AdaBoost} which produces less generalization error compared to mentioned algorithms at the cost of somewhat higher training error. \cite{GML327}
 
-In order to generate an ensemble of K trees from a training
-set f(Is; cs) : s = 1; 2; : : : ; Sg, the algorithm proceeds in the
+In order to generate an ensemble of K trees from a training set, the algorithm proceeds in the
 following steps:
 
+\subsection{AdaBoost Algorithms}
+discrete adaboost, real adaboost, gentle adaboost, modest adaboost
+
+\begin{algorithm}[htb]
+  \caption{ AdaBoost Algorithm}
+  \label{alg:adaboost}
+  \begin{algorithmic}[1]
+    \Require
+      The set of positive samples for current batch, $P_n$;
+      The set of unlabelled samples for current batch, $U_n$;
+      Ensemble of classifiers on former batches, $E_{n-1}$;
+    \State Extracting the set of reliable negative and/or positive samples $T_n$ from $U_n$ with help of $P_n$;
+    \label{code:fram:extract}
+    \State Training ensemble of classifiers $E$ on $T_n \cup P_n$, with help of data in former batches;
+    \label{code:fram:trainbase}
+    \State $E_n=E_{n-1}cup E$;
+    \label{code:fram:add}
+    \State Classifying samples in $U_n-T_n$ by $E_n$;
+    \label{code:fram:classify}
+    \State Deleting some weak classifiers in $E_n$ so as to keep the capacity of $E_n$;
+    \label{code:fram:select} \\
+    \Return $E_n$;
+    \Ensure
+      Ensemble Trees ;
+  \end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[htb]
+  \caption{ Gentle AdaBoost}
+  \label{alg:GentleAdaBoost}
+  \begin{algorithmic}[1]
+    \Require
+	In order to generate an ensemble of \textbf{\textit{T}} trees from a training set 	$\textbf{\textit{D}}=\left\{ { (I_s,c_s) | s=1,2,3,...,S}\right\}$. Where $I_s$ is the input image and $c_s$ is the class label. $c_s \in \left\{{-1,+1 } \right\}$. -1 is a non-face sample image and +1 is a face sample image.
+    \State Initialize the weight $w_s$ for each image $I_s$ and its class label $c_s \in
+    	\left\{ {+1,-1}\right\}$ as:
+
+    $w_s=
+	\begin{cases}
+    1/P,	& c_s = +1 \\
+    1/N,    & c_s = -1
+	\end{cases}$
+
+		Where \textbf{P} is the total number of positive samples, $c_s=+1$, and \textbf{N} is the total number
+		of negative samples, $c_s=-1$.
+    \State For $k = 1,2,...,K:$
+    \begin{itemize}
+	\item[a.]{\textbf{Find/Fit} a decision tree $T_k$ by weighted least squares of $c_s$ to $I_s$ with
+	weights $w_s$}. Refer to equation \eqref{eq:WMSE_01}.
+	\item[b.]{Update weights:}\\
+		$w_{s,k+1} = w_{s,k} \cdot \exp^{-c_s T_k(I_s)}$\\
+		where $T_k(I_s)$ denotes the \textbf{real-valued} output of a regression tree $T_k$ on image $I_s$.
+	\item[c.]{Renormalize weights, $w_{s,k+1}$ , so they sum to 1.}
+	\end{itemize}
+    \Ensure
+      Ensemble of classifiers/trees $\left\{ { T_k | k=1,2,3,...,K}\right\}$.
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[htb]
+  \caption{ Modest AdaBoost}\cite{GML327}
+  \label{alg:ModestAdaBoost}
+  \begin{algorithmic}[1]
+    \Require
+	In order to generate an ensemble of \textbf{\textit{T}} trees from a training set 	$\textbf{\textit{D}}=\left\{ { (I_s,c_s) | s=1,2,3,...,S}\right\}$. Where $I_s$ is the input image and $c_s$ is the class label. $c_s \in \left\{{-1,+1 } \right\}$. -1 is a non-face sample image and +1 is a face sample image.
+    \State Initialize the weight $w_s$ for each image $I_s$ and its class label $c_s \in
+    	\left\{ {+1,-1}\right\}$ as:
+
+    $w_s=
+	\begin{cases}
+    1/P,	& c_s = +1 \\
+    1/N,    & c_s = -1
+	\end{cases}$
+
+		Where P is the total number of positive samples, $c_s=+1$, and N is the total number of negative samples , 			$c_s=-1$.
+    \State For $k = 1,2,...,K:$
+    \begin{itemize}
+	\item[a.]{\textbf{Find/Fit} a decision tree $T_k$ by weighted least squares of $c_s$ to $I_s$ with
+	weights $w_s$}. Refer to equation \eqref{eq:WMSE_01}.
+	\item[b.]{Update weights:}\\
+		$w_{s,k+1} = w_{s,k} \cdot \exp^{-c_s T_k(I_s)}$\\
+		where $T_k(I_s)$ denotes the real-valued output of tree $T_k$ on image $I_s$.
+	\item[c.]{Renormalize weights so they sum to 1.}
+	\end{itemize}
+    \Ensure
+      Ensemble of classifiers/trees $\left\{ { T_k | k=1,2,3,...,K}\right\}$.
+  \end{algorithmic}
+\end{algorithm}
 
 \section{Sensitivity to noise}
 \begin{figure}[ht]
@@ -262,17 +347,17 @@ following steps:
  \label{fig:fig7}
 \end{figure}
 
-This method performs \textbf{poor} in the presence of \textbf{high noise levels} due to 
-\textbf{simplicity of the used binary tests}. The features used by OpenCV detectors should be robust in these circumstances as they are based on \textbf{region averaging}, which corresponds to \textbf{low--pass filtering}. 
+This method performs \textbf{poor} in the presence of \textbf{high noise levels} due to
+\textbf{simplicity of the used binary tests}. The features used by OpenCV detectors should be robust in these circumstances as they are based on \textbf{region averaging}, which corresponds to \textbf{low--pass filtering}.
 
 We use the \textbf{additive (uncorrelated) Gaussian noise model} to \textbf{quantitatively} evaluate these effects:
 A sample from a Gaussian distribution with \textbf{zero mean} and \textbf{standard deviation} is added to the intensity of each image pixel.
 
-An experiment on the GENKI-SZSL dataset is reported in \autoref{fig:fig6}. We see that the \textbf{detection rate of our system degrades significantly as the noise intensity increases}. These adverse effects can be reduced by applying a \textbf{low-pass filter prior to detection}. 
+An experiment on the GENKI-SZSL dataset is reported in \autoref{fig:fig6}. We see that the \textbf{detection rate of our system degrades significantly as the noise intensity increases}. These adverse effects can be reduced by applying a \textbf{low-pass filter prior to detection}.
 \textbf{This is not necessary as the noise levels in this experiment are uncommon for modern cameras,
 even on mobile devices.}
 
-The images in the GENKI-SZSL dataset are already \textbf{noisy} and contain 
+The images in the GENKI-SZSL dataset are already \textbf{noisy} and contain
 \textbf{compression artefacts}, i.e., they are representative of the ones encountered in real world
 face detection applications.
 
@@ -286,19 +371,19 @@ proved faster than evaluating trigonometric functions at runtime).
 It is not immediately clear if this leads to acceptable
 performance since it could result in poor processing speeds and/or large number of false positives.
 
-We use the \textbf{previously learned face detector} and provide experimental analysis. 
+We use the \textbf{previously learned face detector} and provide experimental analysis.
 To investigate the \textbf{detection accuracy}, we \textbf{rotate each image} found in the GENKI-SZSL dataset
 for a \textbf{random angle} sampled uniformly from the $[0, 2\pi]$ interval.
-We report \textbf{false positives} on the NO-FACES-1 set. Results can be seen in \autoref{fig:fig7}. 
+We report \textbf{false positives} on the NO-FACES-1 set. Results can be seen in \autoref{fig:fig7}.
 
 By comparing the \textbf{ROC curves} to the ones in \autoref{fig:fig2},
-we can see that the accuracy of the approach is comparable to the OpenCV's LBP-based frontal face detector. 
+we can see that the accuracy of the approach is comparable to the OpenCV's LBP-based frontal face detector.
 
 %http://www.tablesgenerator.com/
 \begin{table}[hb]
 \begin{tabular}{|l|l|l|l|l|}
 \hline
-\multirow{2}{*}{Device} & \multicolumn{4}{l|}{Time {[}ms{]}} \\ \cline{2-5} 
+\multirow{2}{*}{Device} & \multicolumn{4}{l|}{Time {[}ms{]}} \\ \cline{2-5}
                         & n = 6   & n=8    & n=10   & n=12   \\ \hline
 PC1                     & 15.8    & 20.6   & 25.8   & 31.2   \\ \hline
 PC2                     & 21.6    & 26.8   & 34.5   & 42.9   \\ \hline
@@ -312,13 +397,13 @@ that our system can perform \textbf{rotation invariant} face detection
 with reasonable accuracy in \textbf{real-time} using a \textbf{single core} of a modern personal computer.
 
 \section{Qualitative results}
-A video demonstrating \textbf{rotation invariant} face detection is available at 
+A video demonstrating \textbf{rotation invariant} face detection is available at
 \url{http://youtu.be/1lXfm-PZz0Q}.
-Furthermore, demo applications can be downloaded from \url{http://public.tel.fer.hr/odet/}. 
+Furthermore, demo applications can be downloaded from \url{http://public.tel.fer.hr/odet/}.
 \textbf{Complete source code} is provided at \url{https://github.com/nenadmarkus/pico}.
 
 \section{Conclusion}
-An object detection system based on pixel intensity comparisons organized in decision trees 
+An object detection system based on pixel intensity comparisons organized in decision trees
 can achieve competitive results at high processing speed. This is especially evident on devices with limited hardware support for floating point operations. This could prove important in the embedded system and mobile device industries because it can reduce hardware workload and prolong battery life.
 Further advantages of our method are:
 \begin{compactitem}
@@ -349,7 +434,7 @@ their results.
 %\newblock Assortative pairing and life history strategy - a cross-cultural
 %  study.
 %\newblock {\em Human Nature}, 20:317--330.
- 
+
 %\end{thebibliography}
 
 %----------------------------------------------------------------------------------------
