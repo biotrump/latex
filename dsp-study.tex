@@ -76,7 +76,7 @@
 
 \author{
 \large
-\textsc{Thomas Tsai}\thanks{A thank you or further information}\\[2mm] % Your name
+\textsc{Thomas Tsai}\thanks{VP of BioTrump RD}\\[2mm] % Your name
 \normalsize www.biotrump.com \\ % Your institution
 \normalsize \href{mailto:thomas@biotrump.com}{thomas@biotrump.com} % Your email address
 \vspace{-5mm}
@@ -106,8 +106,8 @@ Independent component analysis, ICA, needs whitening the input signals.
 %	ARTICLE CONTENTS
 %----------------------------------------------------------------------------------------
 
-\begin{multicols}{2} % Two-column layout throughout the main article text
-\end{multicols}
+%\begin{multicols}{2} % Two-column layout throughout the main article text
+%\end{multicols}
 %\onecolumn
 
 \section{Introduction}
@@ -127,13 +127,13 @@ A\hat{x}=\lambda \hat{x}
 \end{equation}
 The sign of $\lambda$ and $\hat{x}$ are not unique. And $\lambda$ and $\hat{x}$ are scalable.
 
-\item A symmetric square matrix, $A=A^T$, can be eigen decomposition which is a special form of 
+\item A symmetric square matrix, $A=A^T$, can be eigen decomposition which is a special form of
 singular value decomposition, SVD, of a m*n matrix.
 \begin{equation}
 \label{eq:PDP}
 A = PDP^{T}\ or\ U \Lambda U^T\
 \end{equation}
-where D or $\Lambda$ is a diagonal matrix whose diagonal components are eigen values.\\
+where \textbf{D or $\Lambda$} is a \textbf{diagonal matrix} whose diagonal components are eigen values.\\
 
 \begin{equation}
 \label{eq:diagm}
@@ -153,14 +153,18 @@ I=P* P^{-1} = P* P^T=U* U^{-1} = U* U^T
 \end{equation}
 
 This decomposition \eqref{eq:PDP} is not unique, because $\Lambda$ and $U$ are not unique.
-When the diagonal elements, eigen value, of the diagonal matrix, $\Lambda$, are changed in the order. 
+When the diagonal elements, eigen value, of the diagonal matrix, $\Lambda$, are changed in the order.
 $U$ is also changed .
 
-
 \item The diagonal matrix properties:\\
-$det(D) = \prod_{i}^{} \lambda_{ii}$\\
+The determinant of D is the product of all the diagonal elements.
 \begin{equation}
-\label{eq:pdpI}
+\label{eq:detD}
+det(D) = \prod_{i}^{} \lambda_{ii}
+\end{equation}\\
+
+\begin{equation}
+\label{eq:pdpD}
 D^{-1}=\Lambda^{-1}=diag(\lambda_{ii}^{-1})=
 \begin{pmatrix}
        1/\lambda_{00}& 0 				& ..	&	0 	\\[0.3em]
@@ -168,7 +172,10 @@ D^{-1}=\Lambda^{-1}=diag(\lambda_{ii}^{-1})=
        .			& .				& ..	&	.	\\[0.3em]
        0 			& 0 			& ..	&	1/\lambda_{nn}\\[0.3em]
 \end{pmatrix}
-\end{equation}
+=\prod_{i}^{} \frac{1}{\lambda_{ii} }\\
+=\prod_{i}^{} \lambda_{ii}^{-1} \\
+\end{equation}\\
+
 \item standard deviation and variance:
 \begin{equation}
 \label{eq:std}
@@ -197,7 +204,7 @@ y_{i}=(Y_i-\bar{Y})
 \end{equation}
 Variance of X, $VAR(X)=Cov(X,X)=\sigma^{2}$, \ is a degenerated form of covariance.\\
 
-\item covariance matrix: is a measure of the extent to which corresponding elements from two sets 
+\item covariance matrix: is a measure of the extent to which corresponding elements from two sets
 of ordered data move in the same direction. We use the following formula to compute covariance.
 \cite{wiki-covariance}\cite{STAT-covariance}\\
 \\Let $X_i$ be the column vector in a Matrix \textbf{X}=
@@ -239,7 +246,7 @@ $\Sigma(\textbf{X})$, and let A be a matrix that can act on \textbf{X}. The cova
 W=\Lambda^{-1/2} U^{T}
 \end{equation}
 This W is not unique, because $\Lambda$ and $U^T$ are not unique.
-When the diagonal elements, eigen value, of the diagonal matrix, $\Lambda$, are changed in the order. 
+When the diagonal elements, eigen value, of the diagonal matrix, $\Lambda$, are changed in the order.
 $U$ is also changed .
 
 Let
@@ -247,21 +254,32 @@ Let
 \label{eq:whitened}
 Y = W*\textbf{X}= (\Lambda^{-1/2} U^{T}) \textbf{X}
 \end{equation}
-be a \textbf{whitened matrix} of \textbf{X}.
+be a \textbf{whitened matrix} of \textbf{X}.\\
+The covariance matrix of Y which is a whitened matrix of X.
+\[
+\Sigma (Y)=\Sigma (\Lambda^{-1/2} U^{T}) \textbf{X}
+\]
 Refer to the equation \eqref{eq:covlinear}
 \[
-\Sigma (Y)=\Sigma (\Lambda^{-1/2} U^{T}) \textbf{X} = 
+A=(\Lambda^{-1/2} U^{T})
+\]
+so
+\[
+\Sigma (Y)=\Sigma (\Lambda^{-1/2} U^{T}) \textbf{X}=
 (\Lambda^{-1/2} U^{T})(\Sigma (\textbf{X})) (\Lambda^{-1/2} U^{T})^{T}
 \]
+Refer to the equation \eqref{eq:covd}\\
+$=(\Lambda^{-1/2} U^{T}) (U \Lambda U^{T}) (\Lambda^{-1/2} U^{T}) ^T$\\
 $=\Lambda^{-1/2} (U^{T}  U) \Lambda U^{T} (\Lambda^{-1/2} U^{T}) ^T$\\
+Refer to the equation \eqref{eq:pdpI}\\
 $=\Lambda^{-1/2} (I) \Lambda U^{T} ({U^{T}}^T{\Lambda^{-1/2}}^T)$\\
 $=\Lambda^{-1/2} \Lambda U^{T} (U{\Lambda^{-1/2}}^T)$\\
 $=\Lambda^{-1/2} \Lambda (U^{T} U) {\Lambda^{-1/2}}^T$\\
 $=\Lambda^{-1/2} \Lambda (I) {\Lambda^{-1/2}}^T$\\
 $=\Lambda^{-1/2} \Lambda \Lambda^{-1/2}$\\
-$=\Lambda^{-1/2 + 1 + -1/2}$\\
+$=\Lambda^{(-1/2) + (1) + (-1/2)}$\\
 $=I$\\
-So Y is whitened, because it's covariance matrix is a Identity matrix.
+So \textbf{Y is whitened}, because it's covariance matrix is a Identity matrix.
 All column vectors in Y has no correlation!
 
 \end{compactitem}
@@ -305,16 +323,16 @@ changes N complex points into another set of N complex points).}
   \label{fig:F_12_1}
   \centering
 	\includegraphics[width=\textwidth, keepaspectratio=true]{F_12_1}
-\caption{Comparing the \textbf{real} and \textbf{complex} DFTs. 
+\caption{Comparing the \textbf{real} and \textbf{complex} DFTs.
 The real DFT takes an \textbf{N point} time domain signal and creates \textbf{two N/2-1} point frequency domain signals. The \textbf{complex DFT} takes two N point time domain signals and creates two N point frequency domain signals. The crosshatched regions shows
 the values common to the two transforms.}
 \end{figure}
 
 
-The \textbf{FFT} is based on the \textbf{complex DFT}. 
+The \textbf{FFT} is based on the \textbf{complex DFT}.
 Since the FFT is an algorithm for calculating the complex DFT. \autoref{fig:F_12_1} compares how the real DFT and the complex DFT store data.\\
 
-The \textbf{real DFT} transforms an \textbf{N point} time domain signal into 
+The \textbf{real DFT} transforms an \textbf{N point} time domain signal into
 \textbf{two N/2} + 1 point frequency domain signals. The time domain
 signal is called just that: the \textbf{time domain signal}. The two signals in the
 \textbf{frequency domain} are called the \textbf{real part} and the \textbf{imaginary part},
@@ -322,14 +340,14 @@ holding the \textbf{amplitudes of the cosine waves and sine waves}, respectively
 In comparison, the \textbf{complex DFT transforms} \textbf{two N point} time domain signals
 into \textbf{two N point} frequency domain signals. The two time domain signals are
 called the \textbf{real part} and the \textbf{imaginary part}, just as are the frequency domain
-signals. 
+signals.
 \\Suppose you have \textbf{an N point} signal, and need to calculate the \textbf{real DFT} by
 means of the \textbf{Complex DFT} (such as by using the FFT algorithm).\\
 \textbf{First}, move the \textbf{N point} signal into the \textbf{real part} of the \textbf{complex DFT's} time domain.\\
 \textbf{Second}, set all of the samples in the \textbf{imaginary} part to \textbf{zero}.\\
-\textbf{Third}, calculation of the \textbf{complex DFT} results in a \textbf{real} and an \textbf{imaginary} signal in the frequency domain, each composed of \textbf{N} points. 
+\textbf{Third}, calculation of the \textbf{complex DFT} results in a \textbf{real} and an \textbf{imaginary} signal in the frequency domain, each composed of \textbf{N} points.
 Samples 0 through N/2 of these signals correspond to the \textbf{real DFT's} spectrum.\\
-The DFT's frequency domain is \textbf{periodic} when the negative frequencies are included (see Fig. 10-9). 
+The DFT's frequency domain is \textbf{periodic} when the negative frequencies are included (see Fig. 10-9).
 The complex DFT's frequency spectrum includes the negative frequencies in the 0
 to 1.0 arrangement. In other words, one full period stretches from sample 0 to
 sample N-1 , corresponding with 0 to 1.0 times the sampling rate. The positive
@@ -394,7 +412,7 @@ e = mc^2
 %\newblock Assortative pairing and life history strategy - a cross-cultural
 %  study.
 %\newblock {\em Human Nature}, 20:317--330.
- 
+
 %\end{thebibliography}
 
 %----------------------------------------------------------------------------------------
