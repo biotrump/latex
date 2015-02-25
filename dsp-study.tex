@@ -172,7 +172,12 @@ D^{-1}=\Lambda^{-1}=diag(\lambda_{ii}^{-1})=
        .			& .				& ..	&	.	\\[0.3em]
        0 			& 0 			& ..	&	1/\lambda_{nn}\\[0.3em]
 \end{pmatrix}
-=\prod_{i}^{} \frac{1}{\lambda_{ii} }\\
+\end{equation}\\
+\begin{equation}
+\label{eq:det-pdpD}
+\\
+det(D^{-1})=det(\Lambda^{-1})=
+\prod_{i}^{} \frac{1}{\lambda_{ii} }\\
 =\prod_{i}^{} \lambda_{ii}^{-1} \\
 \end{equation}\\
 
@@ -218,6 +223,13 @@ $M_{cxc} = Cov(\textbf{X})=$
        \sum x_2 x_1/N 	& \sum x_2 x_2/N 	& ...	& \sum x_2 x_c/N	\\[0.3em]
        ...		& ...			& ...	&	...		\\[0.3em]
        \sum x_c x_1/N 	& \sum x_c x_2/N 	& ...	& \sum x_c^{2}/N	\\[0.3em]
+\end{pmatrix}
+=(1/N)
+\begin{pmatrix}
+       \sum x_1^{2} 	& \sum x_1 x_2 	& ...	& \sum x_1 x_c	\\[0.3em]
+       \sum x_2 x_1 	& \sum x_2 x_2 	& ...	& \sum x_2 x_c	\\[0.3em]
+       ...		& ...			& ...	&	...		\\[0.3em]
+       \sum x_c x_1 	& \sum x_c x_2 	& ...	& \sum x_c^{2}	\\[0.3em]
 \end{pmatrix}
 \end{equation}
 where\\
@@ -284,9 +296,6 @@ All column vectors in Y has no correlation!
 
 \end{compactitem}
 
-\begin{compactitem}
-\item empty
-\end{compactitem}
 %\lipsum[4] % Dummy text
 
 %------------------------------------------------
