@@ -424,7 +424,8 @@ Because R,G,B are zero mean and unit variance, $\sigma^2=1$.
 = U\Lambda U^T
 \end{equation}
 The diagonal elements are all "1", and $\Sigma(\textbf{X})$ is a symmetric matrix, so only 3 items are computed: $\langle R, G \rangle$, $\langle R, B	\rangle$, $\langle G, B	\rangle$
-\\The computing complexity can be reduced very much to be $O(N)$.
+\\The computing complexity can be reduced very much to be $O(\binom {N}{2})=O(C_2^N) = O(N^2/2)$.
+
 
 \end{compactitem}
 
