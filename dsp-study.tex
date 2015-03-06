@@ -64,7 +64,7 @@
 \pagestyle{fancy} % All pages have headers and footers
 \fancyhead{} % Blank out the default header
 \fancyfoot{} % Blank out the default footer
-\fancyhead[C]{Running title $\bullet$ October 2014 $\bullet$ Vol. XXI, No. 1} % Custom header text
+\fancyhead[C]{DSP Study $\bullet$ 2015 $\bullet$ Vol. XXI, No. 1} % Custom header text
 %\fancyfoot[RO,LE]{\thepage} % Custom footer text
 \fancyfoot[RO,L]{\thepage} % Custom footer text
 
@@ -343,19 +343,75 @@ Refer to the equation \eqref{eq:covarm1}, covariance matrix $\Sigma(\textbf{X})$
 \]
 Let \textbf{X}=$\begin{pmatrix} R & G & B \end{pmatrix}$, R,G,B are column vectors which have been normalized.
 \[
+R=
+\begin{pmatrix}
+       R_0\\[0.3em]
+       R_1\\[0.3em]
+       R_2\\[0.3em]
+       R_3\\[0.3em]
+		. \\[0.3em]
+       R_{n-1}\\[0.3em]
+\end{pmatrix}
+, G=
+\begin{pmatrix}
+       G_0\\[0.3em]
+       G_1\\[0.3em]
+       G_2\\[0.3em]
+       G_3\\[0.3em]
+		. \\[0.3em]
+       G_{n-1}\\[0.3em]
+\end{pmatrix}
+, B=
+\begin{pmatrix}
+       B_0\\[0.3em]
+       B_1\\[0.3em]
+       B_2\\[0.3em]
+       B_3\\[0.3em]
+		. \\[0.3em]
+       B_{n-1}\\[0.3em]
+\end{pmatrix}
+\]
+
+\[
 \Sigma(\textbf{X})=(1/N)
 \begin{pmatrix}
        \langle R, R \rangle	& \langle R, G \rangle 	& \langle R, B	\rangle \\[0.3em]
        \langle G, R \rangle 	& \langle G, G \rangle		& \langle G, B	\rangle \\[0.3em]
-       \langle B, R \rangle	& \langle B, R \rangle 	& \langle B, R	\rangle	\\[0.3em]
+       \langle B, R \rangle	& \langle B, G \rangle 	& \langle B, B	\rangle	\\[0.3em]
 \end{pmatrix}
 =
 \begin{pmatrix}
-       \sigma_R^2 & \langle R, G \rangle 	& \langle R, B	\rangle \\[0.3em]
-       \langle G, R \rangle 	& \sigma_G^2		& \langle G, B	\rangle \\[0.3em]
-       \langle B, R \rangle	& \langle B, R \rangle 	& \sigma_B^2	\\[0.3em]
+       \sigma_R^2              & \langle R, G \rangle 	&  \langle R, B	\rangle \\[0.3em]
+       \langle G, R \rangle 	& \sigma_G^2	            & \langle G, B	\rangle \\[0.3em]
+       \langle B, R \rangle	& \langle B, G \rangle 	& \sigma_B^2	\\[0.3em]
 \end{pmatrix}
 \]
+\[
+=
+\begin{pmatrix}
+       R_0 & R_1 & R_2 & R_3 ... & R_{n-1} \\[0.3em]
+       G_0 & G_1 & G_2 & G_3 ... & G_{n-1} \\[0.3em]
+       B_0 & B_1 & B_2 & B_3 ... & B_{n-1} \\[0.3em]
+\end{pmatrix}
+\begin{pmatrix}
+       R_0     & G_0     & B_0\\[0.3em]
+       R_1     & G_1     & B_1\\[0.3em]
+       R_2     & G_2     & B_2\\[0.3em]
+       R_3     & G_3     & B_3\\[0.3em]
+		.      & .       & .  \\[0.3em]
+       R_{n-1} & G_{n-1} & B_{n-1}\\[0.3em]
+\end{pmatrix}
+=
+\begin{pmatrix}
+       R \\[0.3em]
+       G \\[0.3em]
+       B \\[0.3em]
+\end{pmatrix}
+\begin{pmatrix}
+       R & G & B\\[0.3em]
+\end{pmatrix}
+\]
+The time complexity is $O(N^2)$.\\
 Because R,G,B are zero mean and unit variance, $\sigma^2=1$.
 \begin{equation}
 \label{eq:covar-norm-RGB}
@@ -363,12 +419,12 @@ Because R,G,B are zero mean and unit variance, $\sigma^2=1$.
 \begin{pmatrix}
        1 							& \langle R, G \rangle 	& \langle R, B	\rangle \\[0.3em]
        \langle G, R \rangle 		& 1							& \langle G, B	\rangle \\[0.3em]
-       \langle B, R \rangle		& \langle B, R \rangle 	& 1	\\[0.3em]
+       \langle B, R \rangle		& \langle B,G  \rangle 	& 1	\\[0.3em]
 \end{pmatrix}
 = U\Lambda U^T
 \end{equation}
 The diagonal elements are all "1", and $\Sigma(\textbf{X})$ is a symmetric matrix, so only 3 items are computed: $\langle R, G \rangle$, $\langle R, B	\rangle$, $\langle G, B	\rangle$
-\\The computing complexity can be reduced very much!
+\\The computing complexity can be reduced very much to be $O(N)$.
 
 \end{compactitem}
 
