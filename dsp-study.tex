@@ -248,8 +248,10 @@ $x_i$ is a deviation score from the ith data set.\\
 $\sum x_i^2 / N$ is the variance of elements from the ith data set.\\
 $\sum x_i x_j / N$ is the covariance for elements from the ith and jth data sets.\\
 
-\item Properties of Covariance matrix : $\Sigma(\textbf{X})$ \\
-\textbf{square and symmetric}: $M_{cxc}=M_{cxc}^T$ ,\ because $\sum x_i x_j / N$ and $\sum x_j x_i / N$ are the same. Refer to \eqref{eq:PDP}
+\item Properties of Covariance matrix : $M=\Sigma(\textbf{X})$ \\
+\textbf{square, symmetric and positive semidefinite}: \\
+When M is symmetric and positive semidefinite (i.e. not singular), it has a square root $M^{1/2}$, a matrix(not necessarily symmetric) such that $M^{1/2}( M^{1/2})^T = M$. Since M is positive definite, $M^{1/2}$ is invertible, and the vector $Y = M^{-1/2}X$ has covariance matrix:\\\\
+$M_{cxc}=M_{cxc}^T$ ,\ because $\sum x_i x_j / N$ and $\sum x_j x_i / N$ are the same. Refer to \eqref{eq:PDP}
 \begin{equation}
 \label{eq:covd}
 \Sigma(\textbf{X}) = U\Lambda U^T
