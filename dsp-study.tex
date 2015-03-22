@@ -122,6 +122,8 @@ RADICAL is the best method to solve ICA problems.
 \section{axioms}
 
 \begin{compactitem}
+\item detrend
+
 \item If A is a n*n square matrix. Eigen value $\lambda$ and \textbf{eigen} vector $\hat{x}$: \cite{AntonELA10th}
 \begin{equation}
 \label{eq:eval}
@@ -248,14 +250,18 @@ $x_i$ is a deviation score from the ith data set.\\
 $\sum x_i^2 / N$ is the variance of elements from the ith data set.\\
 $\sum x_i x_j / N$ is the covariance for elements from the ith and jth data sets.\\
 
-\item Properties of Covariance matrix : $M=\Sigma(\textbf{X})$ \\
+\item Properties of Covariance matrix : 
 \textbf{square, symmetric and positive semidefinite}: \\
-When M is symmetric and positive semidefinite (i.e. not singular), it has a square root $M^{1/2}$, a matrix(not necessarily symmetric) such that $M^{1/2}( M^{1/2})^T = M$. Since M is positive definite, $M^{1/2}$ is invertible, and the vector $Y = M^{-1/2}X$ has covariance matrix:\\\\
-$M_{cxc}=M_{cxc}^T$ ,\ because $\sum x_i x_j / N$ and $\sum x_j x_i / N$ are the same. Refer to \eqref{eq:PDP}
+Eigen value decomposition for a \textbf{square, symmetric} matrix: 
 \begin{equation}
 \label{eq:covd}
 \Sigma(\textbf{X}) = U\Lambda U^T
 \end{equation}
+
+
+When A is positive semi-definite, $x^T A x >= 0$ and all eigen values are positive.  $\Sigma(\textbf{X})$ has all positive eigen values.
+
+Diagonal matrix $\Lambda$ has all positive eigen values in its diagonal elements. $\Lambda ^ {1/2}$ doest exist and $\Lambda ^ {-1/2}$ doest exist, too.\\
 
 \textbf{linearity of expectation matrix}: Let \textbf{X} be a random vector with covariance matrix
 $\Sigma(\textbf{X})$, and let A be a matrix that can act on \textbf{X}. The covariance matrix of the vector A\textbf{X} is:
@@ -267,48 +273,53 @@ $\Sigma(\textbf{X})$, and let A be a matrix that can act on \textbf{X}. The cova
 \item whiten: Refer to \eqref{eq:covd},  A \textbf{whitening} matrix W is defined as
 \begin{equation}
 \label{eq:whitem}
-W=\Lambda^{-1/2} U^{T}
+W=U\Lambda^{-1/2} U^{T}
 \end{equation}
 This W is not unique, because $\Lambda$ and $U^T$ are not unique.
 When the diagonal elements, eigen value, of the diagonal matrix, $\Lambda$, are changed in the order.
 $U$ is also changed .
 
-Let
+Let X and Y are \textbf{row-major} matrix, i.e, signals are in row vectors.
 \begin{equation}
 \label{eq:whitened}
-Y = W*\textbf{X}= (\Lambda^{-1/2} U^{T}) \textbf{X}
+Y_{nm} = W_{nn}*\textbf{X}_{nm}= (U\Lambda^{-1/2} U^{T}) \textbf{X}_{nm}
+\end{equation}
+Sometimes, column-major is used in fortran and some math tools,
+\begin{equation}
+\label{eq:whitened-col}
+Y' = (W_{nn}*\textbf{X}_{nm})' = \textbf{X}'*W'= \textbf{X}*(U\Lambda^{-1/2} U^{T})'=\textbf{X}*(U^{T}\Lambda^{-1/2} U) 
 \end{equation}
 be a \textbf{whitened matrix} of \textbf{X}.\\
 The covariance matrix of Y which is a whitened matrix of X.
 \[
-\Sigma (Y)=\Sigma (\Lambda^{-1/2} U^{T}) \textbf{X}
+\Sigma (Y)=\Sigma (U\Lambda^{-1/2} U^{T}) \textbf{X}
 \]
 Refer to the equation \eqref{eq:covlinear}
 \[
-A=(\Lambda^{-1/2} U^{T})
+A=(U\Lambda^{-1/2} U^{T})
 \]
 so
 \[
-\Sigma (Y)=\Sigma (\Lambda^{-1/2} U^{T}) \textbf{X}=
-(\Lambda^{-1/2} U^{T})(\Sigma (\textbf{X})) (\Lambda^{-1/2} U^{T})^{T}
+\Sigma (Y)=\Sigma (U\Lambda^{-1/2} U^{T}) \textbf{X}=
+(U\Lambda^{-1/2} U^{T})(\Sigma (\textbf{X})) (U\Lambda^{-1/2} U^{T})^{T}
 \]
 Refer to the equation \eqref{eq:covd}\\
-$=(\Lambda^{-1/2} U^{T}) (U \Lambda U^{T}) (\Lambda^{-1/2} U^{T}) ^T$\\
-$=\Lambda^{-1/2} (U^{T}  U) \Lambda U^{T} (\Lambda^{-1/2} U^{T}) ^T$\\
+$=(U\Lambda^{-1/2} U^{T}) (U \Lambda U^{T}) (U\Lambda^{-1/2} U^{T}) ^T$\\
+$=U\Lambda^{-1/2} (U^{T}  U) \Lambda U^{T} (U\Lambda^{-1/2} U^{T}) ^T$\\
 Refer to the equation \eqref{eq:pdpI}\\
-$=\Lambda^{-1/2} (I) \Lambda U^{T} ({U^{T}}^T{\Lambda^{-1/2}}^T)$\\
-$=\Lambda^{-1/2} \Lambda U^{T} (U{\Lambda^{-1/2}}^T)$\\
-$=\Lambda^{-1/2} \Lambda (U^{T} U) {\Lambda^{-1/2}}^T$\\
-$=\Lambda^{-1/2} \Lambda (I) {\Lambda^{-1/2}}^T$\\
-$=\Lambda^{-1/2} \Lambda \Lambda^{-1/2}$\\
-$=\Lambda^{(-1/2) + (1) + (-1/2)}$\\
-$=I$\\
-So \textbf{Y is whitened}, because it's covariance matrix is a Identity matrix.
-All column vectors in Y has no correlation!
+$=U\Lambda^{-1/2} (I) \Lambda U^{T} ({U^{T}}^T{\Lambda^{-1/2}}^T U^T)$\\
+$=U\Lambda^{-1/2} \Lambda U^{T} (U{\Lambda^{-1/2}}^T) U^T$\\
+$=U\Lambda^{-1/2} \Lambda (U^{T} U) {\Lambda^{-1/2}}^T U^T$\\
+$=U\Lambda^{-1/2} \Lambda (I) {\Lambda^{-1/2}}^T U^T$\\
+$=U\Lambda^{-1/2} \Lambda \Lambda^{-1/2} U^T$\\
+$=U\Lambda^{(-1/2) + (1) + (-1/2)} U^T$\\
+$=U I U^T = U U^T = I $\\
+So \textbf{Y is whitened}, because its covariance matrix is an Identity matrix.
+All row vectors in Y has no correlation!
 
 \item \textbf{Simplification} for a \textbf{normalized} vector $\hat{X_i}$:\\
 Let \textbf{X}=$\begin{pmatrix} X_1 & X_2 & ... & X_c \end{pmatrix}, X_1,X_2,X_c$ are column vectors which have been normalized.
-(zero mean and unit variance)\\
+(zero mean )\\
 
 Refer to the equation \eqref{eq:covar1}, Deviation score $x_k, y_k$:\\
 $x_{k}=(X_{ik}-\bar{X_i})=(X_{ik} - 0)= X_{ik}$ \\
@@ -343,7 +354,7 @@ Refer to the equation \eqref{eq:covarm1}, covariance matrix $\Sigma(\textbf{X})$
        \langle X_c, X_1 \rangle	& \langle X_c, X_2 \rangle 	& ...	& \langle X_c, X_c\rangle	\\[0.3em]
 \end{pmatrix}
 \]
-Let \textbf{X}=$\begin{pmatrix} R & G & B \end{pmatrix}$, R,G,B are column vectors which have been normalized.
+Let \textbf{X}=$\begin{pmatrix} R & G & B \end{pmatrix}$, R,G,B are column vectors which have been normalized (detrend, zero mean).
 \[
 R=
 \begin{pmatrix}
@@ -413,21 +424,12 @@ R=
        R & G & B\\[0.3em]
 \end{pmatrix}
 \]
-The time complexity is $O(N^2)$.\\
-Because R,G,B are zero mean and unit variance, $\sigma^2=1$.
-\begin{equation}
-\label{eq:covar-norm-RGB}
-\Sigma(\textbf{X})=(1/N)
-\begin{pmatrix}
-       1 							& \langle R, G \rangle 	& \langle R, B	\rangle \\[0.3em]
-       \langle G, R \rangle 		& 1							& \langle G, B	\rangle \\[0.3em]
-       \langle B, R \rangle		& \langle B,G  \rangle 	& 1	\\[0.3em]
-\end{pmatrix}
-= U\Lambda U^T
-\end{equation}
-The diagonal elements are all "1", and $\Sigma(\textbf{X})$ is a symmetric matrix, so only 3 items are computed: $\langle R, G \rangle$, $\langle R, B	\rangle$, $\langle G, B	\rangle$
-\\The computing complexity can be reduced very much to be $O(\binom {N}{2})=O(C_2^N) = O(N^2/2)$.
+The time complexity is $O(N^2),  (C_2^N) = O(N^2/2)$.
 
+\item ICA 
+Jade, FastICA, RADICAL, we choose radical
+http://people.cs.umass.edu/~elm/ICA/
+\cite{radical-ica}{krishnaveni2005comparison}
 
 \end{compactitem}
 
