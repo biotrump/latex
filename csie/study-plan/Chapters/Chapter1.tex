@@ -1,267 +1,440 @@
-% Chapter 1
+% Chapter 2
+\chapter{Fundamental Mathematics} % Main chapter title
 
-\chapter{Chapter Title Here} % Main chapter title
+\label{Chapter2} % For referencing the chapter elsewhere, use \ref{Chapter1} 
 
-\label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1} 
-
-\lhead{Chapter 1. \emph{Chapter Title Here}} % This is for the header on each page - perhaps a shortened title
-
-%----------------------------------------------------------------------------------------
-
-\section{Welcome and Thank You}
-Welcome to this \LaTeX{} Thesis Template, a beautiful and easy to use template for writing a thesis using the \LaTeX{} typesetting system.
-
-If you are writing a thesis (or will be in the future) and its subject is technical or mathematical (though it doesn't have to be), then creating it in \LaTeX{} is highly recommended as a way to make sure you can just get down to the essential writing without having to worry over formatting or wasting time arguing with your word processor.
-
-\LaTeX{} is easily able to professionally typeset documents that run to hundreds or thousands of pages long. With simple mark-up commands, it automatically sets out the table of contents, margins, page headers and footers and keeps the formatting consistent and beautiful. One of its main strengths is the way it can easily typeset mathematics, even \emph{heavy} mathematics. Even if those equations are the most horribly twisted and most difficult mathematical problems that can only be solved on a super-computer, you can at least count on \LaTeX{} to make them look stunning.
+\lhead{Chapter 2. \emph{Fundamental Mathematics}} % This is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
-
-\section{Learning \LaTeX{}}
-
-\LaTeX{} is not a WYSIWYG (What You See is What You Get) program, unlike word processors such as Microsoft Word or Apple's Pages. Instead, a document written for \LaTeX{} is actually a simple, plain text file that contains \emph{no formatting}. You tell \LaTeX{} how you want the formatting in the finished document by writing in simple commands amongst the text, for example, if I want to use \textit{italic text for emphasis}, I write the `$\backslash$\texttt{textit}\{\}' command and put the text I want in italics in between the curly braces. This means that \LaTeX{} is a ``mark-up'' language, very much like HTML.
-
-\subsection{A (not so short) Introduction to \LaTeX{}}
-
-If you are new to \LaTeX{}, there is a very good eBook -- freely available online as a PDF file -- called, ``The Not So Short Introduction to \LaTeX{}''. The book's title is typically shortened to just ``lshort''. You can download the latest version (as it is occasionally updated) from here:\\
-\href{http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf}{\texttt{http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf}}
-
-It is also available in several other languages. Find yours from the list on this page:\\
-\href{http://www.ctan.org/tex-archive/info/lshort/}{\texttt{http://www.ctan.org/tex-archive/info/lshort/}}
-
-It is recommended to take a little time out to learn how to use \LaTeX{} by creating several, small `test' documents. Making the effort now means you're not stuck learning the system when what you \emph{really} need to be doing is writing your thesis.
-
-\subsection{A Short Math Guide for \LaTeX{}}
-
-If you are writing a technical or mathematical thesis, then you may want to read the document by the AMS (American Mathematical Society) called, ``A Short Math Guide for \LaTeX{}''. It can be found online here:\\
-\href{http://www.ams.org/tex/amslatex.html}{\texttt{http://www.ams.org/tex/amslatex.html}}\\
-under the ``Additional Documentation'' section towards the bottom of the page.
-
-\subsection{Common \LaTeX{} Math Symbols}
-There are a multitude of mathematical symbols available for \LaTeX{} and it would take a great effort to learn the commands for them all. The most common ones you are likely to use are shown on this page:\\
-\href{http://www.sunilpatel.co.uk/latexsymbols.html}{\texttt{http://www.sunilpatel.co.uk/latexsymbols.html}}
-
-You can use this page as a reference or crib sheet, the symbols are rendered as large, high quality images so you can quickly find the \LaTeX{} command for the symbol you need.
-
-\subsection{\LaTeX{} on a Mac}
- 
-The \LaTeX{} package is available for many systems including Windows, Linux and Mac OS X. The package for OS X is called MacTeX and it contains all the applications you need -- bundled together and pre-customised -- for a fully working \LaTeX{} environment and workflow.
- 
-MacTeX includes a dedicated \LaTeX{} IDE (Integrated Development Environment) called ``TeXShop'' for writing your `\texttt{.tex}' files and ``BibDesk'': a program to manage your references and create your bibliography section just as easily as managing songs and creating playlists in iTunes.
-
-%----------------------------------------------------------------------------------------
-
-\section{Getting Started with this Template}
-
-If you are familiar with \LaTeX{}, then you can familiarise yourself with the contents of the Zip file and the directory structure and then place your own information into the `\texttt{Thesis.cls}' file. Section \ref{FillingFile} on page \pageref{FillingFile} tells you how to do this. Make sure you read section \ref{ThesisConventions} about thesis conventions to get the most out of this template and then get started with the `\texttt{Thesis.tex}' file straightaway.
-
-If you are new to \LaTeX{} it is recommended that you carry on reading through the rest of the information in this document.
-
-\subsection{About this Template}
-
-This \LaTeX{} Thesis Template is originally based and created around a \LaTeX{} style file created by Steve R.\ Gunn from the University of Southampton (UK), department of Electronics and Computer Science. You can find his original thesis style file at his site, here:\\
-\href{http://www.ecs.soton.ac.uk/~srg/softwaretools/document/templates/}{\texttt{http://www.ecs.soton.ac.uk/$\sim$srg/softwaretools/document/templates/}}
-
-My thesis originally used the `\texttt{ecsthesis.cls}' from his list of styles. However, I knew \LaTeX{} could still format better. To get the look I wanted, I modified his style and also created a skeleton framework and folder structure to place the thesis files in.
-
-This Thesis Template consists of that modified style, the framework and the folder structure. All the work that has gone into the preparation and groundwork means that all you have to bother about is the writing.
-
-Before you begin using this template you should ensure that its style complies with the thesis style guidelines imposed by your institution. In most cases this template style and layout will be suitable. If it is not, it may only require a small change to bring the template in line with your institution's recommendations.
-
-%----------------------------------------------------------------------------------------
-
-\section{What this Template Includes}
-
-\subsection{Folders}
-
-This template comes as a single Zip file that expands out to many files and folders. The folder names are mostly self-explanatory:
-
-\textbf{Appendices} -- this is the folder where you put the appendices. Each appendix should go into its own separate `\texttt{.tex}' file. A template is included in the directory.
-
-\textbf{Chapters} -- this is the folder where you put the thesis chapters. A thesis usually has about seven chapters, though there is no hard rule on this. Each chapter should go in its own separate `\texttt{.tex}' file and they usually are split as:
-\begin{itemize}
-\item Chapter 1: Introduction to the thesis topic
-\item Chapter 2: Background information and theory
-\item Chapter 3: (Laboratory) experimental setup
-\item Chapter 4: Details of experiment 1
-\item Chapter 5: Details of experiment 2
-\item Chapter 6: Discussion of the experimental results
-\item Chapter 7: Conclusion and future directions
-\end{itemize}
-This chapter layout is specialised for the experimental sciences.
-
-\textbf{Figures} -- this folder contains all figures for the thesis. These are the final images that will go into the thesis document.
-
-\textbf{Primitives} -- this is the folder that contains scraps, particularly because one final image in the `Figures' folder may be made from many separate images and photos, these source images go here. This keeps the intermediate files separate from the final thesis figures.
-
-\subsection{Files}
-
-Included are also several files, most of them are plain text and you can see their contents in a text editor. Luckily, many of them are auxiliary files created by \LaTeX{} or BibTeX and which you don't need to bother about:
-
-\textbf{Bibliography.bib} -- this is an important file that contains all the bibliographic information and references that you will be citing in the thesis for use with BibTeX. You can write it manually, but there are reference manager programs available that will create and manage it for you. Bibliographies in \LaTeX{} are a large subject and you may need to read about BibTeX before starting with this.
-
-\textbf{Thesis.cls} -- this is an important file. It is the style file that tells \LaTeX{} how to format the thesis. You will also need to open this file in a text editor and fill in your own information (such as name, department, institution). Luckily, this is not too difficult and is explained in section \ref{FillingFile} on page \pageref{FillingFile}.
-
-\textbf{Thesis.pdf} -- this is your beautifully typeset thesis (in the PDF file format) created by \LaTeX{}.
-
-\textbf{Thesis.tex} -- this is an important file. This is the file that you tell \LaTeX{} to compile to produce your thesis as a PDF file. It contains the framework and constructs that tell \LaTeX{} how to layout the thesis. It is heavily commented so you can read exactly what each line of code does and why it is there. After you put your own information into the `\texttt{Thesis.cls}' file, go to this file and begin filling it in -- you have now started your thesis!
-
-\textbf{vector.sty} -- this is a \LaTeX{} package, it tells \LaTeX{} how to typeset mathematical vectors. Using this package is very easy and you can read the documentation on the site (you just need to look at the `\texttt{vector.pdf}' file):\\
-\href{http://www.ctan.org/tex-archive/macros/latex/contrib/vector/}{\texttt{http://www.ctan.org/tex-archive/macros/latex/contrib/vector/}}
-
-\textbf{lstpatch.sty} -- this is a \LaTeX{} package required by this LaTeX template and is included as not all \TeX{} distributions have it installed by default. You do not need to modify this file.
-
-Files that are \emph{not} included, but are created by \LaTeX{} as auxiliary files include:
-
-\textbf{Thesis.aux} -- this is an auxiliary file generated by \LaTeX{}, if it is deleted \LaTeX{} simply regenerates it when you run the main `\texttt{.tex}' file.
-
-\textbf{Thesis.bbl} -- this is an auxiliary file generated by BibTeX, if it is deleted, BibTeX simply regenerates it when you run the main tex file. Whereas the `\texttt{.bib}' file contains all the references you have, this `\texttt{.bbl}' file contains the references you have actually cited in the thesis and is used to build the bibliography section of the thesis.
-
-\textbf{Thesis.blg} -- this is an auxiliary file generated by BibTeX, if it is deleted BibTeX simply regenerates it when you run the main `\texttt{.tex}' file.
-
-\textbf{Thesis.lof} -- this is an auxiliary file generated by \LaTeX{}, if it is deleted \LaTeX{} simply regenerates it when you run the main `\texttt{.tex}' file. It tells \LaTeX{} how to build the `List of Figures' section.
-
-\textbf{Thesis.log} -- this is an auxiliary file generated by \LaTeX{}, if it is deleted \LaTeX{} simply regenerates it when you run the main `\texttt{.tex}' file. It contains messages from \LaTeX{}, if you receive errors and warnings from \LaTeX{}, they will be in this `\texttt{.log}' file.
-
-\textbf{Thesis.lot} -- this is an auxiliary file generated by \LaTeX{}, if it is deleted \LaTeX{} simply regenerates it when you run the main `\texttt{.tex}' file. It tells \LaTeX{} how to build the `List of Tables' section.
-
-\textbf{Thesis.out} -- this is an auxiliary file generated by \LaTeX{}, if it is deleted \LaTeX{} simply regenerates it when you run the main `\texttt{.tex}' file.
-
-
-So from this long list, only the files with the `\texttt{.sty}', `\texttt{.bib}', `\texttt{.cls}' and `\texttt{.tex}' extensions are the most important ones. The other auxiliary files can be ignored or deleted as \LaTeX{} and BibTeX will regenerate them.
-
-%----------------------------------------------------------------------------------------
-
-\section{Filling in the `\texttt{Thesis.cls}' File}\label{FillingFile}
-
-You will need to personalise the thesis template and make it your own by filling in your own information. This is done by editing the `\texttt{Thesis.cls}' file in a text editor.
-
-Open the file and scroll down, past all the `$\backslash$\texttt{newcommand}\ldots' items until you see the entries for `\texttt{University Name}', `\texttt{Department Name}', etc\ldots.
-
-Fill out the information about your group and institution and ensure you keep to block capitals where it asks you to. You can also insert web links, if you do, make sure you use the full URL, including the `\texttt{http://}' for this.
-
-The last item you should need to fill in is the Faculty Name (in block capitals). When you have done this, save the file and recompile `\texttt{Thesis.tex}'. All the information you filled in should now be in the PDF, complete with web links. You can now begin your thesis proper!
-
-%----------------------------------------------------------------------------------------
-
-\section{The `\texttt{Thesis.tex}' File Explained}
-
-The \texttt{Thesis.tex} file contains the structure of the thesis. There are plenty of written comments that explain what pages, sections and formatting the \LaTeX{} code is creating. Initially there seems to be a lot of \LaTeX{} code, but this is all formatting, and it has all been taken care of so you don't have to do it.
-
-Begin by checking that your information on the title page is correct. For the thesis declaration, your institution may insist on something different than the text given. If this is the case, just replace what you see with what is required.
-
-Then comes a page which contains a funny quote. You can put your own, or quote your favourite scientist, author, person, etc\ldots Make sure to put the name of the person who you took the quote from.
-
-Next comes the acknowledgements. On this page, write about all the people who you wish to thank (not forgetting parents, partners and your advisor/supervisor).
-
-The contents pages, list of figures and tables are all taken care of for you and do not need to be manually created or edited. The next set of pages are optional and can be deleted since they are for a more technical thesis: insert a list of abbreviations you have used in the thesis, then a list of the physical constants and numbers you refer to and finally, a list of mathematical symbols used in any formulae. Making the effort to fill these tables means the reader has a one-stop place to refer to instead of searching the internet and references to try and find out what you meant by certain abbreviations or symbols.
-
-The list of symbols is split into the Roman and Greek alphabets. Whereas the abbreviations and symbols ought to be listed in alphabetical order (and this is \emph{not} done automatically for you) the list of physical constants should be grouped into similar themes.
-
-The next page contains a one line dedication. Who will you dedicate your thesis to?
-
-Finally, there is the section where the chapters are included. Uncomment the lines (delete the `\texttt{\%}' character) as you write the chapters. Each chapter should be written in its own file and put into the `Chapters' folder and named `\texttt{Chapter1}', `\texttt{Chapter2}, etc\ldots Similarly for the appendices, uncomment the lines as you need them. Each appendix should go into its own file and placed in the `Appendices' folder.
-
-After the preamble, chapters and appendices finally comes the bibliography. The bibliography style (called `\texttt{unsrtnat}') is used for the bibliography and is a fully featured style that will even include links to where the referenced paper can be found online. Do not under estimate how grateful you reader will be to find that a reference to a paper is just a click away. Of course, this relies on you putting the URL information into the BibTeX file in the first place.
-
-%----------------------------------------------------------------------------------------
-
-\section{Thesis Features and Conventions}\label{ThesisConventions}
-
-To get the best out of this template, there are a few conventions that you may want to follow.
-
-One of the most important (and most difficult) things to keep track of in such a long document as a thesis is consistency. Using certain conventions and ways of doing things (such as using a Todo list) makes the job easier. Of course, all of these are optional and you can adopt your own method.
-
-\subsection{Printing Format}
-
-This thesis template is designed for single sided printing as most theses are printed and bound this way. This means that the left margin is always wider than the right (for binding). Four out of five people will now judge the margins by eye and think, ``I never 
-noticed that before.''.
-
-The headers for the pages contain the page number on the right side (so it is easy to flick through to the page you want) and the chapter name on the left side.
-
-The text is set to 11 point and a line spacing of 1.3. Generally, it is much more readable to have a smaller text size and wider gap between the lines than it is to have a larger text size and smaller gap. Again, you can tune the text size and spacing should you want or need to. The text size can be set in the options for the `$\backslash$\texttt{documentclass}' command at the top of the `\texttt{Thesis.tex}' file and the spacing can be changed by setting a different value in the `$\backslash$\texttt{setstretch}' commands (scattered throughout the `\texttt{Thesis.tex}' file).
-
-\subsection{Using US Letter Paper}
-
-The paper size used in the template is A4, which is a common -- if not standard -- size in Europe. If you are using this thesis template elsewhere and particularly in the United States, then you may have to change the A4 paper size to the US Letter size. Unfortunately, this is not as simple as replacing instances of `\texttt{a4paper}' with `\texttt{letterpaper}'.
-
-This is because the final PDF file is created directly from the \LaTeX{} source using a program called `\texttt{pdfTeX}' and in certain conditions, paper size commands are ignored and all documents are created with the paper size set to the size stated in the configuration file for pdfTeX (called `\texttt{pdftex.cfg}').
-
-What needs to be done is to change the paper size in the configuration file for \texttt{pdfTeX} to reflect the letter size. There is an excellent tutorial on how to do this here: \\
-\href{http://www.physics.wm.edu/~norman/latexhints/pdf_papersize.html}{\texttt{http://www.physics.wm.edu/$\sim$norman/latexhints/pdf\_papersize.html}}
-
-It may be sufficient just to replace the dimensions of the A4 paper size with the US Letter size in the \texttt{pdftex.cfg} file. Due to the differences in the paper size, the resulting margins may be different to what you like or require (as it is common for Institutions to dictate certain margin sizes). If this is the case, then the margin sizes can be tweaked by opening up the \texttt{Thesis.cls} file and searching for the line beginning with, `$\backslash$\texttt{setmarginsrb}' (not very far down from the top), there you will see the margins specified. Simply change those values to what you need (or what looks good) and save. Now your document should be set up for US Letter paper size with suitable margins.
-
-\subsection{References}
-
-The `\texttt{natbib}' package is used to format the bibliography and inserts references such as this one \citep{Reference3}. The options used in the `\texttt{Thesis.tex}' file mean that the references are listed in numerical order as they appear in the text. Multiple references are rearranged in numerical order (e.g. \citep{Reference2, Reference1}) and multiple, sequential references become reformatted to a reference range (e.g. \citep{Reference2, Reference1, Reference3}). This is done automatically for you. To see how you use references, have a look at the `\texttt{Chapter1.tex}' source file. Many reference managers allow you to simply drag the reference into the document as you type.
-
-Scientific references should come \emph{before} the punctuation mark if there is one (such as a comma or period). The same goes for footnotes\footnote{Such as this footnote, here down at the bottom of the page.}. You can change this but the most important thing is to keep the convention consistent throughout the thesis. Footnotes themselves should be full, descriptive sentences (beginning with a capital letter and ending with a full stop).
-
-To see how \LaTeX{} typesets the bibliography, have a look at the very end of this document (or just click on the reference number links).
-
-\subsection{Figures}
-
-There will hopefully be many figures in your thesis (that should be placed in the `Figures' folder). The way to insert figures into your thesis is to use a code template like this:
-\begin{verbatim}
-\begin{figure}[htbp]
-  \centering
-    \includegraphics{Figures/Electron.pdf}
-    \rule{35em}{0.5pt}
-  \caption[An Electron]{An electron (artist's impression).}
-  \label{fig:Electron}
-\end{figure}
-\end{verbatim}
-Also look in the source file. Putting this code into the source file produces the picture of the electron that you can see in the figure below.
-
-\begin{figure}[htbp]
-	\centering
-		\includegraphics{Figures/Electron.pdf}
-		\rule{35em}{0.5pt}
-	\caption[An Electron]{An electron (artist's impression).}
-	\label{fig:Electron}
-\end{figure}
-
-Sometimes figures don't always appear where you write them in the source. The placement depends on how much space there is on the page for the figure. Sometimes there is not enough room to fit a figure directly where it should go (in relation to the text) and so \LaTeX{} puts it at the top of the next page. Positioning figures is the job of \LaTeX{} and so you should only worry about making them look good!
-
-Figures usually should have labels just in case you need to refer to them (such as in Figure \ref{fig:Electron}). The `$\backslash$\texttt{caption}' command contains two parts, the first part, inside the square brackets is the title that will appear in the `List of Figures', and so should be short. The second part in the curly brackets should contain the longer and more descriptive caption text.
-
-The `$\backslash$\texttt{rule}' command is optional and simply puts an aesthetic horizontal line below the image. If you do this for one image, do it for all of them.
-
-The \LaTeX{} Thesis Template is able to use figures that are either in the PDF or JPEG file format.
-
-\subsection{Typesetting mathematics}
-
-If your thesis is going to contain heavy mathematical content, be sure that \LaTeX{} will make it look beautiful, even though it won't be able to solve the equations for you.
-
-The ``Not So Short Introduction to \LaTeX{}'' (available \href{http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf}{here}) should tell you everything you need to know for most cases of typesetting mathematics. If you need more information, a much more thorough mathematical guide is available from the AMS called, ``A Short Math Guide to \LaTeX{}'' and can be downloaded from:\\
-\href{ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf}{\texttt{ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf}}
-
-There are many different \LaTeX{} symbols to remember, luckily you can find the most common symbols \href{http://www.sunilpatel.co.uk/latexsymbols.html}{here}. You can use the web page as a quick reference or crib sheet and because the symbols are grouped and rendered as high quality images (each with a downloadable PDF), finding the symbol you need is quick and easy.
-
-You can write an equation, which is automatically given an equation number by \LaTeX{} like this:
-\begin{verbatim}
+\section{Linear algebra}
+\begin{compactitem}
+
+\item Diagonal Matrix Properties
+In linear algebra, a diagonal matrix is a matrix (usually a square matrix) in which 
+the entries outside the main diagonal are all zero. The diagonal entries themselves 
+may or may not be zero. Thus, the matrix $D = (d_{i,j})$ with n columns and n rows is diagonal 
+if:
+$d_{i,j}=0,\, if \,\, i \neq j \,\, \forall i,j \in \{1,2,3,...n\} $
+\\For example, the following matrix is diagonal:\\
+$\begin{pmatrix}
+       1	&0 	&0	\\[0.3em]
+       0 	&4 	&0 	\\[0.3em]
+       0 	& 0 	&-2	\\[0.3em]
+\end{pmatrix}
+$ \cite{wiki-Diagonal_matrix}
+\\
+\\The general form :$D=diag(\lambda_{ii}) =$
 \begin{equation}
-E = mc^{2}
-  \label{eqn:Einstein}
-\end{equation}
-\end{verbatim}
-
-This will produce Einstein's famous energy-matter equivalence equation:
-\begin{equation}
-E = mc^{2}
-\label{eqn:Einstein}
+\label{eq:diagm}
+\begin{pmatrix}
+       \lambda_{00}& 0 				& ..	&	0 	\\[0.3em]
+       0 			& \lambda_{11} & ..		&	0 	\\[0.3em]
+       .			& .				& ..	&	.	\\[0.3em]
+       0 			& 0 			& ..	&	\lambda_{nn}\\[0.3em]
+     \end{pmatrix}
 \end{equation}
 
-All equations you write (which are not in the middle of paragraph text) are automatically given equation numbers by \LaTeX{}. If you don't want a particular equation numbered, just put the command, `$\backslash$\texttt{nonumber}' immediately after the equation.
+\begin{equation}
+\label{eq:pdpD}
+D^{-1}=diag(\lambda_{ii}^{-1})=
+\begin{pmatrix}
+       1/\lambda_{00}& 0 				& ..	&	0 	\\[0.3em]
+       0 			& 1/\lambda_{11} & ..		&	0 	\\[0.3em]
+       .			& .				& ..	&	.	\\[0.3em]
+       0 			& 0 			& ..	&	1/\lambda_{nn}\\[0.3em]
+\end{pmatrix}
+, \forall \Lambda_{ii} \neq 0,
+\end{equation}\\
+
+The determinant of a Diagonal matrix is the product of all the diagonal elements.
+\begin{equation}
+\label{eq:detD}
+det(D) = \prod_{i}^{} \lambda_{ii}
+\end{equation}
+
+\begin{equation}
+\label{eq:det-pdpD}
+\\
+det(D^{-1})=
+\prod_{i}^{} \frac{1}{\lambda_{ii} }\\
+=\prod_{i}^{} \lambda_{ii}^{-1} \\
+\end{equation}\\
 
 %----------------------------------------------------------------------------------------
+\item {Eigen Values and Eigen Vectors}
+\\If A is a n*n square matrix. Eigen value $\lambda$ and \textbf{eigen} vector $\hat{x}$: \cite{AntonELA10th}
+\begin{equation}
+\label{eq:eval}
+A\hat{x}=\lambda \hat{x}
+\end{equation}
+The sign of $\lambda$ and $\hat{x}$ are not unique. And $\lambda$ and $\hat{x}$ are scalable.
+\\$ (A-\lambda I)X=0$
+Set the determinant to zero to obtain the polynomial equation to solve the eigen values.
+$det(A-\lambda I)=0$
 
-\section{Sectioning and Subsectioning}
+\item singular value decomposition
+\\U and V are orthogonal matrix, $U^{-1}=U^{\top}, V^{-1}=V^{\top}$\\
+r=rank A
+\begin{flalign}
+\underbrace{\mathbf{A}}_{M \times N} = \underbrace{\mathbf{U}}_{M \times M} \times 
+\underbrace{\mathbf{\Sigma}}_{M\times N} \times 
+\underbrace{\mathbf{V}^{\text{T}}}_{N \times N} = &
+\end{flalign}
 
-You should break your thesis up into nice, bite-sized sections and subsections. \LaTeX{} automatically builds a table of Contents by looking at all the `$\backslash$\texttt{chapter}$\{\}$', `$\backslash$\texttt{section}$\{\}$' and `$\backslash$\texttt{subsection}$\{\}$' commands you write in the source.
+\hspace*{-3cm}\vbox{
+\begin{flalign}
+\begin{tikzpicture}[
+baseline,
+mymat/.style={
+  matrix of math nodes,
+  ampersand replacement=\&,
+  left delimiter=(,
+  right delimiter=),
+  nodes in empty cells,
+  nodes={outer sep=-\pgflinewidth,text depth=0.5ex,text height=2ex,text width=1.2em}
+}
+]
+\begin{scope}[every right delimiter/.style={xshift=-3ex}]
+\matrix[mymat] (matu)
+{
+ \& \& \& \& \& \\
+\& \& \& \& \& \\
+\& \& \& \& \& \\
+\& \& \& \& \& \\
+\& \& \& \& \& \\
+\& \& \& \& \& \\
+};
+\node 
+  at ([shift={(3pt,-7pt)}]matu-3-2.west) 
+  {$\cdots$};
+\node 
+  at ([shift={(3pt,-7pt)}]matu-3-5.west) 
+  {$\cdots$};
+\foreach \Columna/\Valor in {1/1,3/r,4/{r+1},6/m}
+{
+\draw 
+  (matu-1-\Columna.north west)
+    rectangle
+  ([xshift=4pt]matu-6-\Columna.south west);
+\node[above] 
+  at ([xshift=2pt]matu-1-\Columna.north west) 
+  {$u_{\Valor}$};
+}
+\draw[decorate,decoration={brace,mirror,raise=3pt}] 
+  (matu-6-1.south west) -- 
+   node[below=4pt] {$\Mcol(A)$}
+  ([xshift=4pt]matu-6-3.south west);
+\draw[decorate,decoration={brace,mirror,raise=3pt}] 
+  (matu-6-4.south west) -- 
+   node[below=4pt] {$\Mnull(A)$}
+  ([xshift=4pt]matu-6-6.south west);
+\end{scope}
+\matrix[mymat,right=10pt of matu] (matsigma)
+{
+\sigma_{1} \& \& \& \& \& \\
+\& \ddots \& \& \& \& \\
+\& \& \sigma_{r} \& \& \& \\
+\& \& \& 0 \& \& \\
+\& \& \& \& \ddots \& \\
+\& \& \& \& \& 0 \\
+};
+%\begin{scope}[every right delimiter/.style={xshift=-3ex}]
+\matrix[mymat,right=25pt of matsigma] (matv)
+{
+ \& \& \& \& \& \\
+\& \& \& \& \& \\
+\& \& \& \& \& \\
+\& \& \& \& \& \\
+\& \& \& \& \& \\
+\& \& \& \& \& \\
+};
+\foreach \Fila/\Valor in {1/1,3/r,4/{r+1},6/n}
+{
+\draw 
+  ([yshift=-6pt]matv-\Fila-1.north west)
+    rectangle
+  ([yshift=-10pt]matv-\Fila-6.north east);
+\node[right=12pt] 
+  at ([yshift=-8pt]matv-\Fila-6.north east) 
+  {$v^{T}_{\Valor}$};
+}
+\draw[decorate,decoration={brace,raise=37pt}] 
+  ([yshift=-6pt]matv-1-6.north east) -- 
+   node[right=38pt] {$\Mrow(A)$}
+  ([yshift=-10pt]matv-3-6.north east);
+\draw[decorate,decoration={brace,raise=37pt}] 
+  ([yshift=-6pt]matv-4-6.north east) -- 
+   node[right=38pt] {$\Mnull(A)$}
+  ([yshift=-10pt]matv-6-6.north east);
+\end{tikzpicture}
+\end{flalign}}
 
-The table of Contents should only list the sections to three (3) levels. A `$\backslash$\texttt{chapter}$\{\}$' is level one (1). A `$\backslash$\texttt{section}$\{\}$' is level two (2) and so a `$\backslash$\texttt{subsection}$\{\}$' is level three (3). In your thesis it is likely that you will even use a `$\backslash$\texttt{subsubsection}$\{\}$', which is level four (4). Adding all these will create an unnecessarily cluttered table of Contents and so you should use the `$\backslash$\texttt{subsubsection$^{*}\{\}$}' command instead (note the asterisk). The asterisk ($^{*}$) tells \LaTeX{} to omit listing the subsubsection in the Contents, keeping it clean and tidy.
+%----------------------------------------------------------------------------------------
+\item Symmetric Matrix:\\
+A symmetric matrix is a square matrix that is equal to its transpose. 
+Formally, matrix A is symmetric if $A = A^{\top}$.
+So if the entries are written as $A = (a_{ij}), \,then\,\, a_{ij} = a_{ji}$.
+\\
+A real sqaure symmetric matrix can be Eigen Value Decomposition : $A=PDP^{\top}$.
+D is a diagonal matrix whose elements are eigen values of A.
+P is composed of orthogonal eigen vectors, so $P^{-1}=P^{\top}$.\\
+\begin{equation}
+\label{eq:pdpI}
+I=P* P^{-1} = P* P^{\top}
+\end{equation}
+
+\item positive definite matrix : $x^{\top} A x \geq 0 ,\forall\, x \, \in \, \mathbb{R}^{N}$
+\\
+Every positive definite matrix has positive eigenvalues.
+
+ 
+\end{compactitem}
+%----------------------------------------------------------------------------------------
+
+\section{Covariance and Whitening}
+\begin{compactitem}
+ 
+\item {standard deviation and variance}
+\begin{equation}
+\label{eq:std}
+\sigma = \sqrt {\sum \frac{(x-\bar{x})^2}{N}}
+\end{equation}
+\begin{equation}
+\label{eq:variance}
+VAR(X)=\sigma^{2} = {\sum \frac{(x-\bar{x})^2}{N}}
+\end{equation}
+
+\item covariance: X and Y are two vectors, random variables. The covariance is a value.
+\begin{equation}
+\label{eq:covar}
+Cov(X,Y)=\sigma(X,Y)=E[(X - E[X])(Y-E[Y])]
+\end{equation}
+\begin{equation}
+\label{eq:covar1}
+Cov(X,Y)=\frac{\sum(X_i-\bar{X})(Y_i-\bar{Y})}{N}=
+\frac{\sum(x_i)(y_i)}{N}
+\end{equation}
+Deviation score $x_i, y_i$:
+\begin{equation}
+\label{eq:covar1}
+x_{i}=(X_i-\bar{X}),\;
+y_{i}=(Y_i-\bar{Y})
+\end{equation}
+Variance of X, $VAR(X)=Cov(X,X)=\sigma^{2}$, \ is a degenerated form of covariance.\\
+
+\item covariance matrix: is a measure of the extent to which corresponding elements from two sets
+of ordered data move in the same direction. We use the following formula to compute covariance.
+\cite{wiki-covariance}\cite{STAT-covariance}\\
+\\Let $X_i$ be the \textbf{column} vector in a Matrix \textbf{X}=
+$\begin{pmatrix} X_1 & X_2 &... & X_c \end{pmatrix}$\\
+The covariance matrix of \textbf{X} is:\\
+$M_{cxc} = \Sigma{(\textbf{X})}=$
+\[
+\begin{pmatrix}
+       COV(X_1,X_1) 	& COV(X_1,X_2) 	& ...	& COV(X_1,X_c)	\\[0.3em]
+       COV(X_2,X_1) 	& COV(X_2,X_2) 	& ...	& COV(X_2,X_c)	\\[0.3em]
+       ...		& ...			& ...	&	...		\\[0.3em]
+       COV(X_c,X_1) 	& COV(X_c,X_2) 	& ...	& COV(X_c,X_c)	\\[0.3em]
+\end{pmatrix}
+=\]
+\begin{equation}
+\label{eq:covarm1}
+\begin{pmatrix}
+       \sum x_{1i}^{2}/N 	& \sum x_{1i} x_{2i}/N 	& ...	& \sum x_{1i} x_{ci}/N	\\[0.3em]
+       \sum x_{2i} x_{1i}/N 	& \sum x_{2i} x_{2i}/N 	& ...	& \sum x_{2i} x_{ci}/N	\\[0.3em]
+       ...		& ...			& ...	&	...		\\[0.3em]
+       \sum x_{ci} x_{1i}/N 	& \sum x_{ci} x_{2i}/N 	& ...	& \sum x_{ci}^{2}/N	\\[0.3em]
+\end{pmatrix}
+=(1/N)
+\begin{pmatrix}
+       \sum x_{1i}^{2} 	& \sum x_{1i} x_{2i} 	& ...	& \sum x_{1i} x_{ci}	\\[0.3em]
+       \sum x_{2i} x_{1i} 	& \sum x_{2i} x_{2i} 	& ...	& \sum x_{2i} x_{ci}	\\[0.3em]
+       ...		& ...			& ...	&	...		\\[0.3em]
+       \sum x_{ci} x_{1i} 	& \sum x_{ci} x_{2i} 	& ...	& \sum x_{ci}^{2}	\\[0.3em]
+\end{pmatrix}
+\end{equation}
+where\\
+N is the dim of the column vector $X_i$.\\
+$x_i$ is a deviation score from the ith data set.\\
+$\sum x_i^2 / N$ is the variance of elements from the ith data set.\\
+$\sum x_i x_j / N$ is the covariance for elements from the ith and jth data sets.\\
+
+\item Properties of Covariance matrix : 
+\textbf{square, symmetric and positive semidefinite}: \\
+Eigen value decomposition for a \textbf{square, symmetric} matrix: 
+\begin{equation}
+\label{eq:covd}
+\Sigma(\textbf{X}) = U\Lambda U^T
+\end{equation}
+
+
+When A is positive semi-definite, $x^T A x >= 0$ and all eigen values are positive.  $\Sigma(\textbf{X})$ has all positive eigen values.
+
+Diagonal matrix $\Lambda$ has all positive eigen values in its diagonal elements. $\Lambda ^ {1/2}$ doest exist and $\Lambda ^ {-1/2}$ doest exist, too.\\
+
+\textbf{linearity of expectation matrix}: Let \textbf{X} be a random vector with covariance matrix
+$\Sigma(\textbf{X})$, and let A be a matrix that can act on \textbf{X}. The covariance matrix of the vector A\textbf{X} is:
+\begin{equation}
+\label{eq:covlinear}
+\Sigma(A\textbf{X}) = A\Sigma(\textbf{X})A^{T}
+\end{equation}
+
+\item whiten: Refer to \eqref{eq:covd},  A \textbf{whitening} matrix W is defined as
+\begin{equation}
+\label{eq:whitem}
+W=U\Lambda^{-1/2} U^{T}
+\end{equation}
+This W is not unique, because $\Lambda$ and $U^T$ are not unique.
+When the diagonal elements, eigen value, of the diagonal matrix, $\Lambda$, are changed in the order.
+$U$ is also changed .
+
+Let X and Y are \textbf{row-major} matrix, i.e, signals are in row vectors.
+\begin{equation}
+\label{eq:whitened}
+Y_{nm} = W_{nn}*\textbf{X}_{nm}= (U\Lambda^{-1/2} U^{T}) \textbf{X}_{nm}
+\end{equation}
+Sometimes, column-major is used in fortran and some math tools,
+\begin{equation}
+\label{eq:whitened-col}
+Y' = (W_{nn}*\textbf{X}_{nm})' = \textbf{X}'*W'= \textbf{X}*(U\Lambda^{-1/2} U^{T})'=\textbf{X}*(U^{T}\Lambda^{-1/2} U) 
+\end{equation}
+be a \textbf{whitened matrix} of \textbf{X}.\\
+The covariance matrix of Y which is a whitened matrix of X.
+\[
+\Sigma (Y)=\Sigma (U\Lambda^{-1/2} U^{T}) \textbf{X}
+\]
+Refer to the equation \eqref{eq:covlinear}
+\[
+A=(U\Lambda^{-1/2} U^{T})
+\]
+so
+\[
+\Sigma (Y)=\Sigma (U\Lambda^{-1/2} U^{T}) \textbf{X}=
+(U\Lambda^{-1/2} U^{T})(\Sigma (\textbf{X})) (U\Lambda^{-1/2} U^{T})^{T}
+\]
+Refer to the equation \eqref{eq:covd}\\
+$=(U\Lambda^{-1/2} U^{T}) (U \Lambda U^{T}) (U\Lambda^{-1/2} U^{T}) ^T$\\
+$=U\Lambda^{-1/2} (U^{T}  U) \Lambda U^{T} (U\Lambda^{-1/2} U^{T}) ^T$\\
+Refer to the equation \eqref{eq:pdpI}\\
+$=U\Lambda^{-1/2} (I) \Lambda U^{T} ({U^{T}}^T{\Lambda^{-1/2}}^T U^T)$\\
+$=U\Lambda^{-1/2} \Lambda U^{T} (U{\Lambda^{-1/2}}^T) U^T$\\
+$=U\Lambda^{-1/2} \Lambda (U^{T} U) {\Lambda^{-1/2}}^T U^T$\\
+$=U\Lambda^{-1/2} \Lambda (I) {\Lambda^{-1/2}}^T U^T$\\
+$=U\Lambda^{-1/2} \Lambda \Lambda^{-1/2} U^T$\\
+$=U\Lambda^{(-1/2) + (1) + (-1/2)} U^T$\\
+$=U I U^T = U U^T = I $\\
+So \textbf{Y is whitened}, because its covariance matrix is an Identity matrix.
+All row vectors in Y has no correlation!
+
+\item \textbf{Simplification} for a \textbf{normalized} vector $\hat{X_i}$:\\
+Let \textbf{X}=$\begin{pmatrix} X_1 & X_2 & ... & X_c \end{pmatrix}, X_1,X_2,X_c$ are column vectors which have been normalized.
+(zero mean )\\
+
+Refer to the equation \eqref{eq:covar1}, Deviation score $x_k, y_k$:\\
+$x_{k}=(X_{ik}-\bar{X_i})=(X_{ik} - 0)= X_{ik}$ \\
+$y_{k}=(Y_{ik}-\bar{Y_i})=(Y_{ik} - 0) = Y_{ik}$
+
+
+Refer to the equation \eqref{eq:covarm1}, covariance matrix $\Sigma(\textbf{X})$=
+\[
+(1/N)
+\begin{pmatrix}
+       \sum x_{1k}^{2} 	& \sum x_{1k} x_{2k} 	& ...	& \sum x_{1k} x_{ck}	\\[0.3em]
+       \sum x_{2k} x_{1k} 	& \sum x_{2k} x_{2k} 	& ...	& \sum x_{2k} x_{ck}	\\[0.3em]
+       ...		& ...			& ...	&	...		\\[0.3em]
+       \sum x_{ck} x_{1k} 	& \sum x_{ck} x_{2k} 	& ...	& \sum x_{ck}^{2}	\\[0.3em]
+\end{pmatrix}
+\]
+\[
+=(1/N)
+\begin{pmatrix}
+       \sum X_{1k}^{2} 	& \sum X_{1k} X_{2k} 	& ...	& \sum X_{1k} X_{ck}	\\[0.3em]
+       \sum X_{2k} X_{1k} 	& \sum X_{2k} X_{2k} 	& ...	& \sum X_{2k} X_{ck}	\\[0.3em]
+       ...		& ...			& ...	&	...		\\[0.3em]
+       \sum X_{ck} X_{1k} 	& \sum X_{ck} X_{2k} 	& ...	& \sum X_{ck}^{2}	\\[0.3em]
+\end{pmatrix}
+\]
+\[
+=(1/N)
+\begin{pmatrix}
+       \langle X_1, X_1 \rangle	& \langle X_1, X_2 \rangle 	& ...	& \langle X_1, X_c	\rangle \\[0.3em]
+       \langle X_2, X_1 \rangle 	& \langle X_2, X_2 \rangle	& ...	& \langle X_2, X_c	\rangle \\[0.3em]
+       ...		& ...			& ...	&	...		\\[0.3em]
+       \langle X_c, X_1 \rangle	& \langle X_c, X_2 \rangle 	& ...	& \langle X_c, X_c\rangle	\\[0.3em]
+\end{pmatrix}
+\]
+Let \textbf{X}=$\begin{pmatrix} R & G & B \end{pmatrix}$, R,G,B are column vectors which have been normalized (detrend, zero mean).
+\[
+R=
+\begin{pmatrix}
+       R_0\\[0.3em]
+       R_1\\[0.3em]
+       R_2\\[0.3em]
+       R_3\\[0.3em]
+		. \\[0.3em]
+       R_{n-1}\\[0.3em]
+\end{pmatrix}
+, G=
+\begin{pmatrix}
+       G_0\\[0.3em]
+       G_1\\[0.3em]
+       G_2\\[0.3em]
+       G_3\\[0.3em]
+		. \\[0.3em]
+       G_{n-1}\\[0.3em]
+\end{pmatrix}
+, B=
+\begin{pmatrix}
+       B_0\\[0.3em]
+       B_1\\[0.3em]
+       B_2\\[0.3em]
+       B_3\\[0.3em]
+		. \\[0.3em]
+       B_{n-1}\\[0.3em]
+\end{pmatrix}
+\]
+
+\[
+\Sigma(\textbf{X})=(1/N)
+\begin{pmatrix}
+       \langle R, R \rangle	& \langle R, G \rangle 	& \langle R, B	\rangle \\[0.3em]
+       \langle G, R \rangle 	& \langle G, G \rangle		& \langle G, B	\rangle \\[0.3em]
+       \langle B, R \rangle	& \langle B, G \rangle 	& \langle B, B	\rangle	\\[0.3em]
+\end{pmatrix}
+=
+\begin{pmatrix}
+       \sigma_R^2              & \langle R, G \rangle 	&  \langle R, B	\rangle \\[0.3em]
+       \langle G, R \rangle 	& \sigma_G^2	            & \langle G, B	\rangle \\[0.3em]
+       \langle B, R \rangle	& \langle B, G \rangle 	& \sigma_B^2	\\[0.3em]
+\end{pmatrix}
+\]
+\[
+=
+\begin{pmatrix}
+       R_0 & R_1 & R_2 & R_3 ... & R_{n-1} \\[0.3em]
+       G_0 & G_1 & G_2 & G_3 ... & G_{n-1} \\[0.3em]
+       B_0 & B_1 & B_2 & B_3 ... & B_{n-1} \\[0.3em]
+\end{pmatrix}
+\begin{pmatrix}
+       R_0     & G_0     & B_0\\[0.3em]
+       R_1     & G_1     & B_1\\[0.3em]
+       R_2     & G_2     & B_2\\[0.3em]
+       R_3     & G_3     & B_3\\[0.3em]
+		.      & .       & .  \\[0.3em]
+       R_{n-1} & G_{n-1} & B_{n-1}\\[0.3em]
+\end{pmatrix}
+=
+\begin{pmatrix}
+       R \\[0.3em]
+       G \\[0.3em]
+       B \\[0.3em]
+\end{pmatrix}
+\begin{pmatrix}
+       R & G & B\\[0.3em]
+\end{pmatrix}
+\]
+The time complexity is $O(N^2),  (C_2^N) = O(N^2/2)$.
+\end{compactitem}
 
 %----------------------------------------------------------------------------------------
 
