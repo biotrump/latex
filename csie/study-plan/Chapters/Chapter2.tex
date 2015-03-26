@@ -1,18 +1,18 @@
-% Chapter 3
+% Chapter 2
 \chapter{Digital Signal Process} % Main chapter title
 
-\label{Chapter3} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+\label{Chapter2} % For referencing the chapter elsewhere, use \ref{Chapter1}
 
-\lhead{Chapter 3. \emph{Digital Signal Process}} % This is for the header on each page - perhaps a shortened title
+\lhead{Chapter 2. \emph{Digital Signal Process}} % This is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
 \section{Independent Component Analysis}
 \begin{compactitem}
 
 \item Diagonal Matrix Properties
-In linear algebra, a diagonal matrix is a matrix (usually a square matrix) in which 
-the entries outside the main diagonal are all zero. The diagonal entries themselves 
-may or may not be zero. Thus, the matrix $D = (d_{i,j})$ with n columns and n rows is diagonal 
+In linear algebra, a diagonal matrix is a matrix (usually a square matrix) in which
+the entries outside the main diagonal are all zero. The diagonal entries themselves
+may or may not be zero. Thus, the matrix $D = (d_{i,j})$ with n columns and n rows is diagonal
 if:
 $d_{i,j}=0,\, if \,\, i \neq j \,\, \forall i,j \in \{1,2,3,...n\} $
 \\For example, the following matrix is diagonal:\\
@@ -76,8 +76,8 @@ $det(A-\lambda I)=0$
 \\U and V are orthogonal matrix, $U^{-1}=U^{\top}, V^{-1}=V^{\top}$\\
 r=rank A
 \begin{flalign}
-\underbrace{\mathbf{A}}_{M \times N} = \underbrace{\mathbf{U}}_{M \times M} \times 
-\underbrace{\mathbf{\Sigma}}_{M\times N} \times 
+\underbrace{\mathbf{A}}_{M \times N} = \underbrace{\mathbf{U}}_{M \times M} \times
+\underbrace{\mathbf{\Sigma}}_{M\times N} \times
 \underbrace{\mathbf{V}^{\text{T}}}_{N \times N} = &
 \end{flalign}
 
@@ -104,28 +104,28 @@ mymat/.style={
 \& \& \& \& \& \\
 \& \& \& \& \& \\
 };
-\node 
-  at ([shift={(3pt,-7pt)}]matu-3-2.west) 
+\node
+  at ([shift={(3pt,-7pt)}]matu-3-2.west)
   {$\cdots$};
-\node 
-  at ([shift={(3pt,-7pt)}]matu-3-5.west) 
+\node
+  at ([shift={(3pt,-7pt)}]matu-3-5.west)
   {$\cdots$};
 \foreach \Columna/\Valor in {1/1,3/r,4/{r+1},6/m}
 {
-\draw 
+\draw
   (matu-1-\Columna.north west)
     rectangle
   ([xshift=4pt]matu-6-\Columna.south west);
-\node[above] 
-  at ([xshift=2pt]matu-1-\Columna.north west) 
+\node[above]
+  at ([xshift=2pt]matu-1-\Columna.north west)
   {$u_{\Valor}$};
 }
-\draw[decorate,decoration={brace,mirror,raise=3pt}] 
-  (matu-6-1.south west) -- 
+\draw[decorate,decoration={brace,mirror,raise=3pt}]
+  (matu-6-1.south west) --
    node[below=4pt] {$\Mcol(A)$}
   ([xshift=4pt]matu-6-3.south west);
-\draw[decorate,decoration={brace,mirror,raise=3pt}] 
-  (matu-6-4.south west) -- 
+\draw[decorate,decoration={brace,mirror,raise=3pt}]
+  (matu-6-4.south west) --
    node[below=4pt] {$\Mnull(A)$}
   ([xshift=4pt]matu-6-6.south west);
 \end{scope}
@@ -150,20 +150,20 @@ mymat/.style={
 };
 \foreach \Fila/\Valor in {1/1,3/r,4/{r+1},6/n}
 {
-\draw 
+\draw
   ([yshift=-6pt]matv-\Fila-1.north west)
     rectangle
   ([yshift=-10pt]matv-\Fila-6.north east);
-\node[right=12pt] 
-  at ([yshift=-8pt]matv-\Fila-6.north east) 
+\node[right=12pt]
+  at ([yshift=-8pt]matv-\Fila-6.north east)
   {$v^{T}_{\Valor}$};
 }
-\draw[decorate,decoration={brace,raise=37pt}] 
-  ([yshift=-6pt]matv-1-6.north east) -- 
+\draw[decorate,decoration={brace,raise=37pt}]
+  ([yshift=-6pt]matv-1-6.north east) --
    node[right=38pt] {$\Mrow(A)$}
   ([yshift=-10pt]matv-3-6.north east);
-\draw[decorate,decoration={brace,raise=37pt}] 
-  ([yshift=-6pt]matv-4-6.north east) -- 
+\draw[decorate,decoration={brace,raise=37pt}]
+  ([yshift=-6pt]matv-4-6.north east) --
    node[right=38pt] {$\Mnull(A)$}
   ([yshift=-10pt]matv-6-6.north east);
 \end{tikzpicture}
@@ -171,7 +171,7 @@ mymat/.style={
 
 %----------------------------------------------------------------------------------------
 \item Symmetric Matrix:\\
-A symmetric matrix is a square matrix that is equal to its transpose. 
+A symmetric matrix is a square matrix that is equal to its transpose.
 Formally, matrix A is symmetric if $A = A^{\top}$.
 So if the entries are written as $A = (a_{ij}), \,then\,\, a_{ij} = a_{ji}$.
 \\
@@ -187,13 +187,13 @@ I=P* P^{-1} = P* P^{\top}
 \\
 Every positive definite matrix has positive eigenvalues.
 
- 
+
 \end{compactitem}
 %----------------------------------------------------------------------------------------
 
 \section{Fourier Transform}
 \begin{compactitem}
- 
+
 \item {standard deviation and variance}
 \begin{equation}
 \label{eq:std}
@@ -259,9 +259,9 @@ $x_i$ is a deviation score from the ith data set.\\
 $\sum x_i^2 / N$ is the variance of elements from the ith data set.\\
 $\sum x_i x_j / N$ is the covariance for elements from the ith and jth data sets.\\
 
-\item Properties of Covariance matrix : 
+\item Properties of Covariance matrix :
 \textbf{square, symmetric and positive semidefinite}: \\
-Eigen value decomposition for a \textbf{square, symmetric} matrix: 
+Eigen value decomposition for a \textbf{square, symmetric} matrix:
 \begin{equation}
 \label{eq:covd}
 \Sigma(\textbf{X}) = U\Lambda U^T
@@ -296,7 +296,7 @@ Y_{nm} = W_{nn}*\textbf{X}_{nm}= (U\Lambda^{-1/2} U^{T}) \textbf{X}_{nm}
 Sometimes, column-major is used in fortran and some math tools,
 \begin{equation}
 \label{eq:whitened-col}
-Y' = (W_{nn}*\textbf{X}_{nm})' = \textbf{X}'*W'= \textbf{X}*(U\Lambda^{-1/2} U^{T})'=\textbf{X}*(U^{T}\Lambda^{-1/2} U) 
+Y' = (W_{nn}*\textbf{X}_{nm})' = \textbf{X}'*W'= \textbf{X}*(U\Lambda^{-1/2} U^{T})'=\textbf{X}*(U^{T}\Lambda^{-1/2} U)
 \end{equation}
 be a \textbf{whitened matrix} of \textbf{X}.\\
 The covariance matrix of Y which is a whitened matrix of X.
