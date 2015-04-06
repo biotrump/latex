@@ -154,21 +154,14 @@
 
 Current state-of-the-art remote PPG (rPPG) algorithms are capable of extracting
 a clean pulse-signal in ambient light conditions using a regular color camera,
-even when subjects move significantly. We investigate the feasibility of rPPG in
-the (near)-infrared spectrum Two camera setups are investigated, one setup consisting
-of three monochrome cameras with different optical filters, and one setup consisting of
-a single RGB camera with a visible light blocking filter (visible light is filtered,
-low pass filter for IR). Simulation results predict the monochrome setup to be more
-motion robust, but this simulation neglects parallax. To verify this, a challenging
-benchmark dataset consisting of 30 videos is created with various motion scenarios and
-skin-tones. Experiments show that both camera setups are capable of accurate
-pulse-extraction in all motion scenarios, with an average SNR of +6.45 and +7.26 dB
-respectively. The single camera setup proves to be superior in scenarios involving scaling,
-likely due to parallax of the multi-camera setup. To further improve motion robustness of
-the RGB camera, dedicated LED illumination with two distinct wavelengths is proposed and
-verified. This paper demonstrates that accurate rPPG measurements in infrared are feasible,
-even with severe subject motion.
-}
+even when subjects move significantly. The feasibility of rPPG in the near-infrared spectrum
+of two camera setups will be investigated. One setup consists of three monochrome cameras with
+different NIR optical filters, and the other one setup consists of a single RGB camera with a
+NIR light blocking filter (NIR light is filtered, high pass filter for visible light).
+Some challenging benchmark datasets consisting of videos will be created with various motion scenarios and
+skin-tones. This study tries to achieve the accurate rPPG measurements in infrared conditions,
+even with severe subject motions. The multi-spectrum system can also enhance the face detection,
+pedestrian detection by searching the human skin classified by NIR characteristic of human tissues.
 
 \clearpage % Start a new page
 
