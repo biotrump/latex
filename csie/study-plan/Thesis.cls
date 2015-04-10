@@ -134,6 +134,10 @@
 \setcounter{totalnumber}{20}
 % \setcounter{dbltopnumber}{9}
 \usepackage{graphicx}
+\usepackage{psfrag}
+\newcommand{\argmin}{\mathop{\mathrm{argmin}}}
+\newcommand{\infl}{\eta}
+\newcommand{\Ind}{\mathrm{I}}
 \usepackage{epstopdf}
 \usepackage{booktabs}
 \usepackage{rotating}

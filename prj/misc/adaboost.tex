@@ -133,7 +133,7 @@ The class {\tt learner} implements the abstract functionality of any
 \item {\tt lrn=learner(idim, odim);}\\
   This constructor creates a {\tt learner} object for data of input dimension
   {\tt idim} and output dimension {\tt odim}. {\tt idim} and {\tt odim}
-  default to $1$, if not given. 
+  default to $1$, if not given.
 \item {\tt lrn=do\_learn(lrn, dataset);}\\
   This is an abstract function which any derived class has to
   implement/overload. The learner {\tt lrn} is given a dataset and learns from
@@ -213,7 +213,7 @@ Example:
                     X(1,101:200), Y(1,101:200)) ;
     >> lrn=rbf_net_w(3, 1e-3, 2, 1) ; % 3 centers and lambda=0.001
     >> lrn=do_learn(lrn, dataset, 1) ;
-    >> [trErr,teErr]=get_class_errors(lrn, dataset) 
+    >> [trErr,teErr]=get_class_errors(lrn, dataset)
     trErr =
         0.1500
     teErr =
@@ -254,7 +254,7 @@ the original AdaBoost algorithm \cite{FreSch94} (cf.~pseudo-code in Figure
 \ref{fig:ABALG}). It has several methods for internal use only. The steps given
 in the pseudo-code can be mapped to methods as follows: Initialization: {\tt
   init\_learn}; 1. {\tt train\_week, do\_learn}; 2.\&3. {\tt comp\_weight,
-  do\_learn} and 4. {\tt comp\_distr, do\_learn}. 
+  do\_learn} and 4. {\tt comp\_distr, do\_learn}.
 \begin{itemize}
 \item {\tt bb=adabooster(proto, booststeps, param1, param2);}\\
   Constructor for {\tt adabooster} objects (cf.~{\tt booster\_base}).
@@ -291,7 +291,7 @@ Example:
     >> lrn=rbf_net_w(3, 1e-3, 2, 1) ; % 3 centers and lambda=0.001
     >> bb=adabooster(lrn, 30, 1) ; % 30 iterations
     >> bb=do_learn(bb,dataset) ;
-    >> [trErr,teErr]=get_class_errors(bb, dataset) 
+    >> [trErr,teErr]=get_class_errors(bb, dataset)
     trErr =
         0.1100
     teErr =
@@ -340,17 +340,17 @@ decay)
 \begin{equation}
   E = \frac{1}{2}\sum_{i=1}^l \left(y_i - f({\bf x}_i)\right)^2 +
   \frac{\lambda}{2 l} \sum_{k=1}^K w_k^2.
-\label{equ:rbf-reg} 
+\label{equ:rbf-reg}
 \end{equation}
 %
 %It is easy to derive the gradients $\partial E/\partial {\bf \mu}_k$
-%and $\partial E/\partial \sigma_k$ (see later).  
+%and $\partial E/\partial \sigma_k$ (see later).
 %
 Taking the derivative of (\ref{equ:rbf-reg}) with respect to
 RBF means $\bf\mu_k$ and variances $\sigma_k$ we obtain
 \begin{equation}
   \frac{\partial E}{\partial {\bf \mu}_k} =
-    \sum_{i=1}^l (f({\bf x}_i)- y_i)\frac{\partial}{\partial {\bf \mu}_k}f({\bf x}_i), 
+    \sum_{i=1}^l (f({\bf x}_i)- y_i)\frac{\partial}{\partial {\bf \mu}_k}f({\bf x}_i),
   \label{equ:grad_C_mu}
 \end{equation}
 with $\frac{\partial}{\partial {\bf \mu}_k} f({\bf x}_i) = w_k\frac{{\bf x}_i-{\bf
@@ -387,7 +387,7 @@ $\lambda=10^{-6}$ and up to ten CG iterations.
 \begin{center}
   \fbox{\parbox{11.4cm}{\sffamily\small
 %  \begin{itemize}
-%  \item[] 
+%  \item[]
     {\bf Algorithm RBF-Net($K,\lambda,O$)}
     \begin{itemize}
     \item[] {\bf Input:}
@@ -426,9 +426,9 @@ $\lambda=10^{-6}$ and up to ten CG iterations.
           $\overline{\bf v}$ and $\delta$
         \end{enumerate}
       \end{enumerate}
-    \item[] {\bf Output:} Optimized RBF net 
+    \item[] {\bf Output:} Optimized RBF net
     \end{itemize}
-%  \end{itemize} 
+%  \end{itemize}
 }}
 \end{center} %
   \caption[]{Pseudo-code description of the RBF net algorithm}
@@ -444,7 +444,7 @@ of them. For details see e.g.~\cite{FreSch94} and \cite{RaeOnoMue00a}.
   \begin{center}
     \begin{center}
       \fbox{\parbox{11.4cm}{\small\sffamily {\bf Algorithm AdaBoost}$({\bf Z}, T)$
-          \begin{itemize} 
+          \begin{itemize}
           \item[] {\bf Input:} $l$ examples ${\bf Z}=\langle ({\bf x}_1,y_1), \ldots,
             ({\bf x}_l,y_l)\rangle$
           \item[] {\bf Initialize:} $w_{1}({\bf z}_i) = 1/l$ for all $i=1\ldots l$
@@ -459,7 +459,7 @@ of them. For details see e.g.~\cite{FreSch94} and \cite{RaeOnoMue00a}.
               \end{equation}
               abort if $\epsilon_t=0$ or $\epsilon_t\geq \frac{1}{2}-\Delta$, where
               $\Delta$ is a small constant
-            \item Set 
+            \item Set
               \begin{equation}
                 \label{def_b_t}
                 b_t = \log\frac{1-\epsilon_{t}}{\epsilon_{t}}.
@@ -481,9 +481,9 @@ of them. For details see e.g.~\cite{FreSch94} and \cite{RaeOnoMue00a}.
           \end{itemize}
           }}
     \end{center}
-  \end{center} 
+  \end{center}
   \caption[]{The AdaBoost algorithm \cite{FreSch94}.\label{fig:ABALG}}
-\end{figure} 
+\end{figure}
 
 \begin{figure}[bth]
   \begin{center}
@@ -497,19 +497,19 @@ of them. For details see e.g.~\cite{FreSch94} and \cite{RaeOnoMue00a}.
         \item[] {\bf Do for} $t=1,\ldots,T$,
         \begin{enumerate}
         \item Train classifier with respect to the weighted sample set
-          $\{{\bf Z},{\bf w}_t\}$ and \\ 
+          $\{{\bf Z},{\bf w}_t\}$ and \\
           obtain hypothesis $h_t:{\bf x}\mapsto [-1\ldots 1]$
         \item Find the weight of the hypothesis $b_t$: %by minimizing (\ref{Greg}):
           \begin{equation}
             \label{def_b_t_reg}
             b_t = \argmin_{b_t\geq 0} \sum_{i=1}^l \exp
-                  \left\{ -\frac{1}{2} \left[\rho({\bf z}_i, {\bf b}^t) + 
+                  \left\{ -\frac{1}{2} \left[\rho({\bf z}_i, {\bf b}^t) +
                    C|{\bf b}^t|\infl_{t}({\bf z}_i)\right]\right\},
           \end{equation}
           where $\infl_t({\bf z}_i)\equiv \left(\sum_{r=1}^t c_r w_r({\bf
           z}_i)\right)^2$ and $\rho({\bf z}_i,{\bf b}^t)\equiv y_i \sum_{r=1}^t c_r
           h_r({\bf x}_i)$\\
-          abort if 
+          abort if
           \begin{equation}
             \label{exit_condition_reg}
             b_t=0\quad\mbox{or}\quad b_t \geq \Gamma~,
@@ -519,7 +519,7 @@ of them. For details see e.g.~\cite{FreSch94} and \cite{RaeOnoMue00a}.
           \begin{equation}
             \label{update_w_reg}
             {\bf w}^{t+1}({\bf z}_i) = \frac{1}{Z_t} \exp\left\{-\frac{1}{2} \left[\rho({\bf z}_i,
-                   {\bf b}^t) + 
+                   {\bf b}^t) +
                    C|{\bf b}^t|\infl_{t}({\bf z}_i)\right]\right\}
           \end{equation}
           where $Z_t$ is a normalization constant, such that $\sum_{i=1}^l
@@ -530,13 +530,13 @@ of them. For details see e.g.~\cite{FreSch94} and \cite{RaeOnoMue00a}.
         \end{itemize}
         }}
         \end{center}
-  \end{center} 
+  \end{center}
   %
-  \caption[]{The AdaBoost$_{Reg}$ (ABR) algorithm 
+  \caption[]{The AdaBoost$_{Reg}$ (ABR) algorithm
     \cite{Rae98,RaeOnoMue00a}, where $C$ is the regularization constant. For
     $C=0$ and $h_t\in \{-1,+1\}$ this algorithm is equivalent to AdaBoost. }
   \label{fig:ABREGALG}
-\end{figure} 
+\end{figure}
 
 \subsection{Notes}
 \label{app:terms}
@@ -570,15 +570,14 @@ party has been advised of the possibility of such damages.
 
 \end{appendix}
 
-\bibliographystyle{plain} 
+\bibliographystyle{plain}
 \bibliography{/home/raetsch/CANDY/Tex/newcandy}
 
 \end{document}
 
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
- 
+%%% End:
