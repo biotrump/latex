@@ -182,4 +182,189 @@ and can be expressed in terms of the Fourier cosine transform of $\mathbf{f_{e}(
 %----------------------------------------------------------------------------------------
 
 \section{ICA}
+Independent Component Analysis (ICA) is a computationally efficient blind source separation technique.
+It has been an area of interest for researchers for many practical applications in various fields of science and
+engineering.
+
+\cite{journals/informaticaSI/NaikK11}
+\begin{compactitem}
+
+\item {Introduction}
+The problem of source separation is an inductive inference problem. There is not enough information
+to deduce the solution, so one must use any available information to infer the most probable solution.
+The problem of separating and estimating the original source waveforms from the sensor array, 
+without knowing the transmission channel characteristics and the source can be briefly expressed
+as problems related to BSS. In BSS the word blind refers to the fact that we do not know how the signals
+were mixed or how they were generated. As such, the separation is in principle impossible. Allowing some relatively indirect and general constrains, we however still hold the term BSS valid, and separate under these conditions. There appears to be something magical about blind source separation; we are estimating the original source signals without knowing the parameters of mixing and/orfiltering processes. Independent component analysis (ICA) is one of the most widely used BSS techniques for revealing hidden factors that underlie sets of random variables, measurements, or signals. ICA is essentially a method for extracting individual
+signals from mixtures. Its power resides in the physical assumptions that the different physical processes
+generate unrelated signals. The simple and generic nature of this assumption allows ICA to be successfully applied in diverse range of research fields. The BSS is unsupervised and thought of as a black box method.
+
+\item {ICA model}
+The general model for ICA is that the sources are generated
+through a linear basis transformation, where additive
+noise can be present. Suppose we have N statistically independent
+signals, si(t), i = 1, ...,N. We assume that the
+sources themselves cannot be directly observed and that
+each signal, si(t), is a realization of some fixed probability
+distribution at each time point t. Also, suppose we observe
+these signals using N sensors, then we obtain a set of N observation
+signals xi(t), i = 1, ...,N that are mixtures of the
+sources. A fundamental aspect of the mixing process is that
+the sensors must be spatially separated (e.g. microphones
+that are spatially distributed around a room) so that each
+sensor records a different mixture of the sources. With this
+spatial separation assumption in mind, we can model the
+mixing process with matrix multiplication as follows:
+
+\begin{equation}
+\label{eq:ica-linear}
+\\
+x(t) = As(t)
+\end{equation}\\
+
+where A is an unknown matrix called the mixing matrix
+and $x(t), s(t)$ are the two vectors representing the observed
+signals and source signals respectively. Incidentally, the
+justification for the description of this signal processing
+technique as blind is that we have no information on the
+mixing matrix, or even on the sources themselves.
+The objective is to recover the original signals, $s_i(t)$,
+from only the observed vector $x_i(t)$. We obtain estimates
+for the sources by first obtaining the “unmixing matrix” $W$,
+where, 
+This enables an estimate, $\hat{s}(t)$, of the independent
+sources to be obtained:
+
+\begin{equation}
+\label{eq:ica-white}
+\hat{s}(t) =Wx(t)
+\end{equation}\\
+
+The diagram in Figure 1 illustrates both the mixing
+and unmixing process involved in BSS. The independent
+sources are mixed by the matrix A (which is unknown in
+this case). We seek to obtain a vector y that approximates
+s by estimating the unmixing matrix W. If the estimate of
+the unmixing matrix is accurate, we obtain a good approximation
+of the sources.
+The above described ICA model is the simple model
+since it ignores all noise components and any time delay
+in the recordings.
+\item {Independence}
+
+A key concept that constitutes the foundation of independent
+component analysis is statistical independence. To
+simplify the above discussion consider the case of two different
+random variables s1 and s2. The random variable s1
+is independent of s2, if the information about the value of
+s1 does not provide any information about the value of s2,
+and vice versa. Here s1 and s2 could be random signals
+originating from two different physical process that are not
+related to each other.
+
+\begin{figure}[ht]
+  \label{fig:chap2-ICA}
+  \centering
+	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-ICA.png}
+	\caption{Blind source separation (BSS) block diagram. $s(t)$ are the sources. $x(t)$ are the recordings,
+	$\hat{s}(t)$ are the estimated sources A is mixing matrix and W is un-mixing matrix. }
+\end{figure}
+
+\item {Preprocessing}
+Before examining specific ICA algorithms, it is instructive
+to discuss preprocessing steps that are generally carried out
+before ICA.
+
+\item {Centering}
+A simple preprocessing step that is commonly performed
+is to “center” the observation vector x by subtracting its
+mean vector $m=E{x}$. That is then we obtain the centered
+observation vector, $x_c$, as follows:
+\begin{equation}
+\label{eq:ica-zero-mean}
+x_c = x-m
+\end{equation}
+
+This step simplifies ICA algorithms by allowing us to
+assume a zero mean. Once the unmixing matrix has been
+estimated using the centered data, we can obtain the actual
+estimates of the independent components as follows:
+
+\begin{equation}
+\label{eq:ica-source}
+\hat{s}(t) = A^{-1} (x_c + m )
+\end{equation}
+
+From this point on, all observation vectors will be assumed
+centered. The mixing matrix, on the other hand,
+remains the same after this preprocessing, so we can always
+do this without affecting the estimation of the mixing
+matrix.
+
+\item {Whitening}
+Another step which is very useful in practice is to prewhiten
+the observation vector x. Whitening involves linearly
+transforming the observation vector such that its components
+are uncorrelated and have unit variance . Let
+xw denote the whitened vector, then it satisfies the following
+equation:
+\begin{equation}
+\label{eq:ica-source}
+E{x_w x^T_w} = I
+\end{equation}
+
+where $E{x_w x^T_w}$ is the covariance matrix of $x_w$. Also,
+since the ICA framework is insensitive to the variances
+of the independent components, we can assume without
+loss of generality that the source vector, s, is white, i.e.
+$E{s s^T } = I$
+A simple method to perform the whitening transformation
+is to use the eigenvalue decomposition (EVD) of x. 
+That is, we decompose the covariance matrix of x as follows:
+\begin{equation}
+\label{eq:ica-evd}
+E{x x^T } =VDV^T
+\end{equation}
+where V is the matrix of eigenvectors of $E{x x^T }$,
+and D is the diagonal matrix of eigenvalues, i.e. 
+$D = diag{\lambda_1,\lambda_2, ...,\lambda_n}$. The observation vector can be
+whitened by the following transformation:
+\begin{equation}
+\label{eq:ica-whiteningX}
+x_w = VD^{-1/2}V^Tx
+\end{equation}
+where the matrix $D^{-1/2}$ is obtained by a
+simple component wise operation as $D^{-1/2}=diag{\lambda_1^{-1/2},\lambda_2^{-1/2},...,\lambda_n^{-1/2}}$. Whitening transforms
+the mixing matrix into a new one, which is orthogonal
+\begin{equation}
+\label{eq:ica-whiteningX}
+x_w=VD^(-1/2)V^TAs=A_w s
+\end{equation}
+
+hence,
+\begin{equation}
+\label{eq:ica-CoVI}
+E{x_w x^T_w } = A_w E{s s^T }A^T_w
+= A_w A^T_w = I
+\end{equation}
+
+Whitening thus reduces the number of parameters to be
+estimated. Instead of having to estimate the $n^2$ elements of
+the original matrix A, we only need to estimate the new orthogonal
+mixing matrix, where An orthogonal matrix has
+$n(n-1)/2$ degrees of freedom. One can say that whitening
+solves half of the ICA problem. This is a very useful step
+as whitening is a simple and efficient process that significantly
+reduces the computational complexity of ICA. An illustration
+of the whitening process with simple ICA source
+separation process is explained in the later section.
+
+\item {ICA Algorithms}
+There are several ICA algorithms available in literature.
+However the following algorithms are widely used
+in numerous signal processing applications. These includes
+FastICA, JADE, and ICA RADICAL. Each algorithm used a different
+approach to solve equation. We will use ICA RADICAL \cite{radical-ica} to solve our PPG problem.
+
+\end{compactitem}
 
