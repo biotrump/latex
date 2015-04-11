@@ -6,22 +6,33 @@
 \lhead{Chapter 7. \emph{Fundamental Mathematics}} % This is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
-\section{Highly Dynamic Ambient Light Scenario}
-Driving a car
-Dark Room
-Dancing Disco Party
+\section{Highly Dynamic Ambient Light Scenario}\cite {6799899}
+Heart rate can be monitored remotely using regular RGB cameras by analyzing minute skin color changes caused
+by periodic blood flow. I will study an infrared-based alternative for light-robust camera-based heart
+rate measurements. It is possible to remotely measure heart rate using regular RGB cameras.
+Heart rate is captured using remote photoplethysmography (remote PPG), which is an extension of the contact
+photoplethysmography developed in the 1930s by Hertzman. The principle behind this
+technology is that the light reflected from the skin is modulated according to the specific absorption
+spectrum of the hemoglobin, the main constituent of blood. Each time the heart beats,
+a new blood flow reaches the skin leading to minute variations of the skin color, so called micro-blushes.
+While these micro-blushes cannot be observed by the human eye, regular camera and dedicated algorithms
+allow their extraction. Results reported on remote PPG-based heart rate measurement have so far shown good
+accuracy under stable light conditions for situations ranging from monitoring stationary subjects.
+However, since remote PPG is based on the analysis of minute color changes, its performance in an
+highly dynamic ambient light or dark setting using an RGB implementation is questionable.
+The reason for concern is the highly dynamic and unpredictable environment especially in terms of lighting
+conditions which can vary from (i) full to cloudy sunlight, (ii) natural to artificial light and (iii)
+presence to absence of light. The amount and spectral content of the light available in the environment
+are the main factors that need to be accounted for to achieve light robust camerabased heart rate measurements.
+We will study an infrared-based implementation of remote PPG measurement suitable for the highly dynamic ambient light
+environment and present results obtained under highly dynamic light conditions.
+
+
+INFRARED-BASED REMOTE PPG
+As in full darkness RGB cameras do not function at all, we designed an infrared-based remote PPG solution that uses a dedicated light source. A light source emitting in the infrared region of the spectrum (700nm to 1000nm) (i) ensures user comfort, as it is invisible to human eye, and (ii) allows remote PPG measurements as the infrared region is also modulated by the blood pulse.  Disturbances in the measurement caused by external light sources are largely eliminated by using a narrowband optical filter. The infrared light source is flashed in sync with the camera frame rate. The flash duration and intensity are optimized such that the total projected optical power complies with official safety regulations [9]. The proposed IR-based remote PPG system uses hardware of the Antisleep system [10], comprising an infrared sensitive monochrome camera and two light units emitting in the infrared domain. The extraction of the remote PPG waveform is performed by applying spatio-temporal,  FFT, processing techniques similar to [4]. To
+ensure that the processing takes into account only relevant pixels a skin detection step is added. The extraction of the heart rate values from the raw waveform is based on Fourier analysis of a 512 data point sliding window.
 
 \section{motion-robust rPPG}
 
-\begin{compactitem}
-
-\item Diagonal Matrix Properties
-The time complexity is $O(N^2),  (C_2^N) = O(N^2/2)$.
-\end{compactitem}
-
 %----------------------------------------------------------------------------------------
 \section{Future Study to combine both motion-robust and Ambient Light Immunity}
-
-You have reached the end of this mini-guide. You can now rename or overwrite this pdf file and begin writing your own `\texttt{Chapter1.tex}' and the rest of your thesis. The easy work of setting up the structure and framework has been taken care of for you. It's now your job to fill it out!
-
-Good luck and have lots of fun!
