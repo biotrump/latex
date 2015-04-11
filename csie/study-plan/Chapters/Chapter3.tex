@@ -16,26 +16,26 @@ Decision Trees are commonly used in data mining with the objective of creating a
 \item {Classification Trees}: where the target variable is categorical and the tree is used to identify the "class" within which a target variable would likely fall into.
 
 \begin{figure}[ht]
-  \label{fig:chap3-Classification}
   \centering
 	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-Classification.png}
-	\caption{classification tree.}
+  \caption{classification tree.}
+  \label{fig:chap3-Classification}
 \end{figure}
 
 \item {Regression Trees}: where the target variable is continuous and tree is used to predict it's value.
 \begin{figure}[ht]
-  \label{fig:chap3-Regression}
   \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-Regression.png}
-	\caption{Regression tree.}
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-Regression.png}
+  \caption{Regression tree.}
+  \label{fig:chap3-Regression}
 \end{figure}
 
 The CART algorithm is structured as a sequence of questions, the answers to which determine what the next question, if any should be.  The result of these questions is a tree like structure where the ends are terminal nodes at which point there are no more questions.  A simple example of a decision tree is as follows \autoref{fig:chap3-CART_tree_titanic_survivors}:
 \begin{figure}[ht]
-  \label{fig:chap3-CART_tree_titanic_survivors}
   \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-CART_tree_titanic_survivors.png}
-	\caption{A tree showing survival of passengers on the Titanic ("sibsp" is the number of spouses or siblings aboard). The figures under the leaves show the probability of survival and the percentage of observations in the leaf.}
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-CART_tree_titanic_survivors.png}
+  \caption{A tree showing survival of passengers on the Titanic ("sibsp" is the number of spouses or siblings aboard). The figures under the leaves show the probability of survival and the percentage of observations in the leaf.}
+  \label{fig:chap3-CART_tree_titanic_survivors}
 \end{figure}
 
 \end{compactitem}
@@ -43,7 +43,6 @@ The CART algorithm is structured as a sequence of questions, the answers to whic
 \section{Ensemble Learning}
 Ensemble methods are learning algorithms that construct a set of classifiers and then classify
 new data points by taking a (weighted) vote of their predictions. The more recent algorithms include error-correcting output coding, Bagging and boosting.
-
 \cite{Dietterich:2000:EMM:648054.743935}
 
 \begin{compactitem}
@@ -52,21 +51,21 @@ new data points by taking a (weighted) vote of their predictions. The more recen
 \autoref{fig:chap3-prob}
 
 \begin{figure}[ht]
-  \label{fig:chap3-prob}
   \centering
 	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-prob.png}
-	\caption{The probability that exactly l of 21 hypotheses will make an error, assuming each hypothesis has an
+  \caption{The probability that exactly l of 21 hypotheses will make an error, assuming each hypothesis has an
 	error rate of 0.3 and makes its errors independently of the other hypotheses. }
+  \label{fig:chap3-prob}
 \end{figure}
 
 \item {Three fundamental reasons}
 \autoref{fig:chap3-ThreeReasons}
 
 \begin{figure}[ht]
-  \label{fig:chap3-ThreeReasons}
   \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-ThreeReasons.png}
-	\caption{The fundamental resons why an ensemble may work better than a single classifier. }
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-ThreeReasons.png}
+  \caption{The fundamental resons why an ensemble may work better than a single classifier. }
+  \label{fig:chap3-ThreeReasons}
 \end{figure}
 
 \end{compactitem}
@@ -89,20 +88,20 @@ In Breiman’s later work, this algorithm was modified to perform both un-weight
 The forest chooses the classification that contains the most votes. \autoref{fig:chap3-meta-learners}. below is a visual representation of the un-weighted random forest algorithm.
 
 \begin{figure}[ht]
-  \label{fig:chap3-meta-learners}
   \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-meta-learners.png}
-	\caption{Meta Learners}
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-meta-learners.png}
+  \caption{Meta Learners}
+  \label{fig:chap3-meta-learners}
 \end{figure}
 
 \item {Bootstrap}
 
 \item {Bagging : sampling with replacement members}
 \begin{figure}[ht]
-  \label{fig:chap3-SampleWithReplacing}
   \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-SampleWithReplacing.png}
-	\caption{Sample with Replacing}
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap3-SampleWithReplacing.png}
+  \caption{Sample with Replacing}
+  \label{fig:chap3-SampleWithReplacing}
 \end{figure}
 
 \item {Build Tree}

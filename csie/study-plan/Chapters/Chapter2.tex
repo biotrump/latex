@@ -9,16 +9,17 @@
 Sampling is the process of recording the values of a signal at given points in time. For A/D converters, these points in time are equidistant. The number of samples taken during one second is called the sample rate. Keep in mind that these samples are still analogue values. The mathematic description of the ideal sampling is the multiplication of the signal with a sequence of dirac pulses. In real A/D converters the sampling is carried out by a sample-and-hold buffer. The sample-and-hold buffer splits the sample period in a sample time and a hold time. In case of a voltage being sampled, a capacitor is switched to the input line during the sample time. During the hold time it is detached from the line and keeps its voltage.
 
 \begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-Analog_Waveform.png}
+  \caption{}
   \label{fig:chap2-Analog_Waveform}
-  \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-Analog_Waveform.png}
-	\caption{.}
 \end{figure}
+
 \begin{figure}[ht]
-  \label{fig:chap2-Sampled_Waveform}
   \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-Sampled_Waveform.png}
-	\caption{.}
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-Sampled_Waveform.png}
+  \caption{}
+  \label{fig:chap2-Sampled_Waveform}
 \end{figure}
 
 \section{ADC and DAC}\cite{smith1997dspbook}
@@ -30,10 +31,10 @@ contain. This chapter describes the sampling frequency, number of bits, and type
 Quantization is the process of representing the analog voltage from the sample-and-hold circuit by a fixed number of bits. The input analog voltage (or current) is compared to a set of pre-defined voltage (or current) levels. Each of the levels is represented by a unique binary number, and the binary number that corresponds to the level that is closest to the analog voltage is chosen to represent that sample. This process rounds the analog voltage to the nearest level, which means that the digital representation is an approximation to the analog voltage. There are a few methods for quantizing samples. The most commonly used ones are the dual slope method and the successive approximation.
 
 \begin{figure}[ht]
-  \label{fig:chap2-Digital_Waveform}
   \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-Digital_Waveform.png}
-	\caption{.}
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-Digital_Waveform.png}
+  \caption{}
+  \label{fig:chap2-Digital_Waveform}
 \end{figure}
 
 
@@ -263,11 +264,11 @@ originating from two different physical process that are not
 related to each other.
 
 \begin{figure}[ht]
-  \label{fig:chap2-ICA}
   \centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-ICA.png}
-	\caption{Blind source separation (BSS) block diagram. $s(t)$ are the sources. $x(t)$ are the recordings,
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-ICA.png}
+  \caption{Blind source separation (BSS) block diagram. $s(t)$ are the sources. $x(t)$ are the recordings,
 	$\hat{s}(t)$ are the estimated sources A is mixing matrix and W is un-mixing matrix. }
+  \label{fig:chap2-ICA}
 \end{figure}
 
 \item {Preprocessing}
@@ -309,7 +310,7 @@ are uncorrelated and have unit variance . Let
 xw denote the whitened vector, then it satisfies the following
 equation:
 \begin{equation}
-\label{eq:ica-source}
+\label{eq:ica-source1}
 E{x_w x^T_w} = I
 \end{equation}
 
@@ -330,7 +331,7 @@ and D is the diagonal matrix of eigenvalues, i.e.
 $D = diag{\lambda_1,\lambda_2, ...,\lambda_n}$. The observation vector can be
 whitened by the following transformation:
 \begin{equation}
-\label{eq:ica-whiteningX}
+\label{eq:ica-whiteningX1}
 x_w = VD^{-1/2}V^Tx
 \end{equation}
 where the matrix $D^{-1/2}$ is obtained by a
