@@ -1,26 +1,31 @@
 % Chapter 4
-\chapter{Computer Vision} % Main chapter title
+\chapter{Face Detection} % Main chapter title
 
 \label{Chapter4} % For referencing the chapter elsewhere, use \ref{Chapter1}
 
-\lhead{Chapter 4. \emph{Computer Vision}} % This is for the header on each page - perhaps a shortened title
+\lhead{Chapter 4. \emph{Face Detection}} % This is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
-\section{VJ Face Detection}
-\section{Binary Descriptor}
-\section{PICO}
-\section{NPD}
-\section{Facial Landmark}
-\begin{compactitem}
+\section{Robust Real-time Object Detection}
+The Viola-Jones algorithm  \cite{Viola2004RRF966432}, the first ever real-time face detection system. 
+There are three ingredients working in concert to enable a fast and accurate detection:
+the integral image for feature computation, Adaboost for feature selection and an 
+attentional cascade for efficient computational resource allocation. 
+Since the Viola-Jones algorithm typically gives multiple detections, 
+a post-processing step is also proposed to reduce detection redundancy using a 
+robustness argument.\cite{ipol.2014.104}
 
-\item Diagonal Matrix Properties
+\begin{compactitem}
+\item {Features and Integral Image}
+\item {Feature Selection with Adaboost}
+\item {Attentional Cascade}
 \end{compactitem}
 
+\section{PICO}
+Object Detection with Pixel Intensity Comparisons Organized in Decision Trees
+\cite{DBLPjournalscorrabs}
+
+\section{NPD}
+
 %----------------------------------------------------------------------------------------
-
-\section{In Closing}
-
-You have reached the end of this mini-guide. You can now rename or overwrite this pdf file and begin writing your own `\texttt{Chapter1.tex}' and the rest of your thesis. The easy work of setting up the structure and framework has been taken care of for you. It's now your job to fill it out!
-
-Good luck and have lots of fun!
 
