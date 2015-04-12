@@ -173,10 +173,52 @@ and can be expressed in terms of the Fourier cosine transform of $\mathbf{f_{e}(
 
 
 \item {Discrete Fourier Transform}
+\begin{figure}[ht]
+  \label{fig:chap2-DFT}
+  \centering
+	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-DFT.png}
+	\caption{}
+\end{figure}\cite{smith1997scientist}
 
 \item {Fast Fourier Transform}
+\begin{figure}
+  \label{fig:chap2-FFT}
+  \centering
+	\includegraphics[width=\textwidth, keepaspectratio=true]{chap2-FFT.png}
+\caption{Comparing the \textbf{real} and \textbf{complex} DFTs.
+The real DFT takes an \textbf{N point} time domain signal and creates \textbf{two N/2-1} point frequency domain %signals. The \textbf{complex DFT} takes two N point time domain signals and creates two N point frequency domain signals. The crosshatched regions shows
+the values common to the two transforms.}
+\end{figure}
 
-\item {Power Spectra}
+
+The \textbf{FFT} is based on the \textbf{complex DFT}.
+Since the FFT is an algorithm for calculating the complex DFT. \autoref{chap2-FFT} 
+compares how the real DFT and the complex DFT store data.\\
+
+The \textbf{real DFT} transforms an \textbf{N point} time domain signal into
+\textbf{two N/2} + 1 point frequency domain signals. The time domain
+signal is called just that: the \textbf{time domain signal}. The two signals in the
+\textbf{frequency domain} are called the \textbf{real part} and the \textbf{imaginary part},
+holding the \textbf{amplitudes of the cosine waves and sine waves}, respectively.
+In comparison, the \textbf{complex DFT transforms} \textbf{two N point} time domain signals
+into \textbf{two N point} frequency domain signals. The two time domain signals are
+called the \textbf{real part} and the \textbf{imaginary part}, just as are the frequency domain
+signals.
+\\Suppose you have \textbf{an N point} signal, and need to calculate the \textbf{real DFT} by
+means of the \textbf{Complex DFT} (such as by using the FFT algorithm).\\
+\textbf{First}, move the \textbf{N point} signal into the \textbf{real part} of the \textbf{complex DFT's} time domain.\\
+\textbf{Second}, set all of the samples in the \textbf{imaginary} part to \textbf{zero}.\\
+\textbf{Third}, calculation of the \textbf{complex DFT} results in a \textbf{real} and an \textbf{imaginary} 
+signal in the frequency domain, each composed of \textbf{N} points.
+Samples 0 through N/2 of these signals correspond to the \textbf{real DFT's} spectrum.\\
+The complex DFT's frequency spectrum includes the negative frequencies in the 0
+to 1.0 arrangement. In other words, one full period stretches from sample 0 to
+sample N-1 , corresponding with 0 to 1.0 times the sampling rate. The positive
+frequencies sit between sample 0 and N/2 , corresponding with 0 to 0.5. The
+other samples, between N/2 + 1 and N-1 , contain the negative frequency
+values (which are usually ignored). \cite{smith1997dspbook}
+
+%\item {Power Spectra}
 
 \end{compactitem}
 
