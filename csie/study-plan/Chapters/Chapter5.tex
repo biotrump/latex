@@ -1,70 +1,99 @@
 % Chapter 5
-\chapter{Photoplethysmogram} % Main chapter title
+\chapter{Multispectral Human Skin Detection}% Main chapter title
 
 \label{Chapter5} % For referencing the chapter elsewhere, use \ref{Chapter1}
 
-\lhead{Chapter 5. \emph{Photoplethysmogram}} % This is for the header on each page - perhaps a shortened title
+\lhead{Chapter 5. \emph{Multispectral}} % This is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
-\section{Photoplethysmogram}
-\cite{wiki-PPG}
-A photoplethysmogram (PPG) is an optically obtained plethysmogram,
-a volumetric measurement of an organ.
-A PPG is often obtained by using a pulse oximeter
-which illuminates the skin and measures changes in light absorption.[1]
-A conventional pulse oximeter monitors the perfusion of blood to the dermis
-and subcutaneous tissue of the skin.
+\section{Introduction}
+The conventional methods for detecting objects, which employ pattern
+recognition, have many problems, for example, an increase in processing time,
+a difficulty of detecting occluded objects, a necessity of huge data for machine
+learning and so on. To overcome these problems, a method for detecting human skin
+that employs a spectroscopic camera will be studied. Each substance has its
+own reflection characteristics. In particular, human
+skin reflects flesh-colored light in the visible region and
+absorbs light with a wavelength of 970 nm. Thus, to detect human skin,
+a multi-band camera that has red, green, blue, 870, 970, and 1050 nm filters will be
+studied. By using this multi-band camera, human
+skin in Y Cr Cb color space around the visible region
+and dips around 970 nm in the near-infrared region is detected. \cite{Kanzawa_humanskin}
 
-Diagram of the layers of human skin With each cardiac cycle the heart pumps
-blood to the periphery. Even though this pressure pulse is somewhat damped
-by the time it reaches the skin, it is enough to distend the arteries and
-arterioles in the subcutaneous tissue.
-If the pulse oximeter is attached without compressing the skin,
-a pressure pulse can also be seen from the venous plexus, as a small secondary peak.
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap6-Reflectance.png}
+  \caption{Reflectance spectra of various substances.}
+  \label{fig:chap6_Reflectance}
+\end{figure}
 
-The change in volume caused by the pressure pulse is detected by illuminating the skin
-with the light from a light-emitting diode (LED) and then measuring the amount of
-light either transmitted or reflected to a photodiode.
-Each cardiac cycle appears as a peak, as seen in the figure.
-Because blood flow to the skin can be modulated by multiple other physiological systems,
-the PPG can also be used to monitor breathing, hypovolemia,
-and other circulatory conditions.[2] Additionally, the shape of the PPG waveform
-differs from subject to subject, and varies with the location and
-manner in which the pulse oximeter is attached.
+\section {Reflectance Spectrum of Human Skin}
+Spectroscopy is the study of how substances absorb,
+transmit, or reflect light. A conventional camera sensor
+can obtain images in the ultraviolet (UV),
+Vis, and NIR regions. UV–Vis–NIR spectroscopy is
+applied for optical absorbance and reflectance measurements in the wavelength
+range 200–1500 nm. Because a substance has its own unique reflectance
+characteristics, we can distinguish a substance by analyzing the
+light reflectance. Reflectance spectra of some substances, for example
+asphalt, road markings and human skin are depicted in \autoref{fig:chap6_Reflectance}.
+The horizontal and vertical axis show the wavelength and reflectance, respectively.
 
-Sites for measuring PPG
-While pulse oximeters are a commonly used medical device the PPG derived from them is
-rarely displayed, and is nominally only processed to determine heart rate.
-PPGs can be obtained from transmissive absorption (as at the finger tip) or
-reflection (as on the forehead).
+\autoref{fig:chap6_humanskin} shows only a reflectance spectrum of human
+skin. Skin has a lower reflectance at shorter wavelengths (about 350 nm) than at
+longer wavelengths (about 1050 nm). In particular, skin has a unique
+property that it absorbs light around a wavelength of 970nm in the NIR region.
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap6-humanskin.png}
+  \caption{Reflectance spectra of human skin.}
+  \label{fig:chap6_humanskin}
+\end{figure}
 
-In outpatient settings, pulse oximeters are commonly worn on the finger.
-However, in cases of shock, hypothermia, etc. blood flow to the periphery
-can be reduced, resulting in a PPG without a discernible cardiac pulse.
-In this case, a PPG can be obtained from a pulse oximeter on the head,
-with the most common sites being the ear, nasal septum, and forehead.
+The reflectance spectra of skin from about 50 people who have various
+races are measured; all the spectra revealed that light was absorbed
+at a wavelength of 970 nm, as shown in \autoref{fig:chap6_humanrace}.
 
-PPGs can also be obtained from the vagina and esophagus.
-
-Motion artifacts have been shown to be a limiting factor preventing accurate readings
-during exercise and free living conditions.
-January 2010, a group at Qualcomm Inc. (H. Garudadri, P. K. Bahedi, S. Majumdar)
-filed a US patent application describing a so-called body area network with,
-among others, a finger PPG and a 3D acceleroter. Sampling parameters,
-in particular the under sampling ratio of the used compressed sampling are adjusted based
-on sensor readings. [3]
-
-\section{Remote PPG}
-
-\begin{compactitem}
-
-\item MIT EVM
-\end{compactitem}
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap6-humanrace.png}
+  \caption{Spectra of various human skin.}
+  \label{fig:chap6_humanrace}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
+\section{Multi-Camera Module}
+Human skin reflects flesh-colored light in the Vis region and absorbs light
+with a wavelength of 970 nm in the NIR region. A multi-band camera is studied to
+exploit these characteristics. It has two types of cameras: a Vis camera that
+acquires three images around Vis regions as a conventional color camera and
+a NIR camera that can acquire three images in individual NIR wavelengths (870, 950,
+1050nm). \autoref{fig:chap6_mcam} shows a photograph of the multi-band camera schematic.
 
-\section{In Closing}
+\begin{figure}[hb]
+  \centering
+    \includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap6-mcam.png}
+  \caption{Schematic diagram of the multi-camera module.}
+  \label{fig:chap6_mcam}
+\end{figure}
+%----------------------------------------------------------------------------------------
+\section {Human Skin Detection}
+Conventionally, for detecting human skin from images,
+visible color image processing methods are used.
+However, it has been well known that color information is easily affected
+from a change of illumination condition. A NIR image processing method is proposed
+to detect human skin. This method is based on the characteristics of spectroscopy
+around NIR region, therefore unaffected from visible
+light. But, since clouds and water vapor absorbs light
+with a wavelength of 940nm as shown in \autoref{fig:chap6_water},
+it is difficult to distinguish human skin, which absorbs light with a wavelength
+of 970nm, from clouds. To overcome above problems, a multi-band camera is studied.
+Both visible color and NIR image processing methods are combined for detecting
+human skin.
 
-You have reached the end of this mini-guide. You can now rename or overwrite this pdf file and begin writing your own `\texttt{Chapter1.tex}' and the rest of your thesis. The easy work of setting up the structure and framework has been taken care of for you. It's now your job to fill it out!
-
-Good luck and have lots of fun!
+\begin{figure}[hb]
+  \centering
+	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap6-water.png}
+  \caption{Reflectance spectra of clouds and water vapor.}
+  \label{fig:chap6_water}
+\end{figure}

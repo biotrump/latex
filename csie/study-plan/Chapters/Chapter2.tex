@@ -193,7 +193,7 @@ the values common to the two transforms.}
 
 
 The \textbf{FFT} is based on the \textbf{complex DFT}.
-Since the FFT is an algorithm for calculating the complex DFT. \autoref{chap2-FFT} 
+Since the FFT is an algorithm for calculating the complex DFT. \autoref{chap2-FFT}
 compares how the real DFT and the complex DFT store data.\\
 
 The \textbf{real DFT} transforms an \textbf{N point} time domain signal into
@@ -209,7 +209,7 @@ signals.
 means of the \textbf{Complex DFT} (such as by using the FFT algorithm).\\
 \textbf{First}, move the \textbf{N point} signal into the \textbf{real part} of the \textbf{complex DFT's} time domain.\\
 \textbf{Second}, set all of the samples in the \textbf{imaginary} part to \textbf{zero}.\\
-\textbf{Third}, calculation of the \textbf{complex DFT} results in a \textbf{real} and an \textbf{imaginary} 
+\textbf{Third}, calculation of the \textbf{complex DFT} results in a \textbf{real} and an \textbf{imaginary}
 signal in the frequency domain, each composed of \textbf{N} points.
 Samples 0 through N/2 of these signals correspond to the \textbf{real DFT's} spectrum.\\
 The complex DFT's frequency spectrum includes the negative frequencies in the 0
@@ -236,7 +236,7 @@ engineering.
 \item {Introduction}
 The problem of source separation is an inductive inference problem. There is not enough information
 to deduce the solution, so one must use any available information to infer the most probable solution.
-The problem of separating and estimating the original source waveforms from the sensor array, 
+The problem of separating and estimating the original source waveforms from the sensor array,
 without knowing the transmission channel characteristics and the source can be briefly expressed
 as problems related to BSS. In BSS the word blind refers to the fact that we do not know how the signals
 were mixed or how they were generated. As such, the separation is in principle impossible. Allowing some relatively indirect and general constrains, we however still hold the term BSS valid, and separate under these conditions. There appears to be something magical about blind source separation; we are estimating the original source signals without knowing the parameters of mixing and/orfiltering processes. Independent component analysis (ICA) is one of the most widely used BSS techniques for revealing hidden factors that underlie sets of random variables, measurements, or signals. ICA is essentially a method for extracting individual
@@ -275,7 +275,7 @@ mixing matrix, or even on the sources themselves.
 The objective is to recover the original signals, $s_i(t)$,
 from only the observed vector $x_i(t)$. We obtain estimates
 for the sources by first obtaining the “unmixing matrix” $W$,
-where, 
+where,
 This enables an estimate, $\hat{s}(t)$, of the independent
 sources to be obtained:
 
@@ -363,14 +363,14 @@ of the independent components, we can assume without
 loss of generality that the source vector, s, is white, i.e.
 $E{s s^T } = I$
 A simple method to perform the whitening transformation
-is to use the eigenvalue decomposition (EVD) of x. 
+is to use the eigenvalue decomposition (EVD) of x.
 That is, we decompose the covariance matrix of x as follows:
 \begin{equation}
 \label{eq:ica-evd}
 E{x x^T } =VDV^T
 \end{equation}
 where V is the matrix of eigenvectors of $E{x x^T }$,
-and D is the diagonal matrix of eigenvalues, i.e. 
+and D is the diagonal matrix of eigenvalues, i.e.
 $D = diag{\lambda_1,\lambda_2, ...,\lambda_n}$. The observation vector can be
 whitened by the following transformation:
 \begin{equation}

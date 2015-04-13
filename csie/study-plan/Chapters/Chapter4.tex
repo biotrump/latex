@@ -13,27 +13,26 @@ both the false negative and false positive rates in order to achieve an acceptab
 This task requires an accurate numerical description of what sets human faces apart from other
 objects. It turns out that these characteristics can be extracted with a remarkable committee learning
 algorithm called Adaboost, which relies on a committee of weak classifiers to form a strong
-one through a voting mechanism. An operational algorithm must also work with a reasonable computational 
+one through a voting mechanism. An operational algorithm must also work with a reasonable computational
 budget. Techniques such as integral image and attentional cascade make the Viola-Jones algorithm \cite{Viola2004RRF966432}
 highly efficient: fed with a real time image sequence generated from a standard webcam, it performs well on a
 standard PC.\cite{ipol.2014.104}
 
 %----------------------------------------------------------------------------------------
 \section{Robust Real-time Object Detection}
-The Viola-Jones algorithm  \cite{Viola2004RRF966432}, the first ever real-time face detection system. 
+The Viola-Jones algorithm  \cite{Viola2004RRF966432}, the first ever real-time face detection system.
 There are three contributions of Viola-Jones algorithm to enable a fast and accurate detection:
-the \textbf{integral image} for feature computation, \textbf{Adaboost} for feature selection and an 
-\textbf{attentional cascade} for efficient computational resource allocation. 
-Since the Viola-Jones algorithm typically gives multiple detections, 
+the \textbf{integral image} for feature computation, \textbf{Adaboost} for feature selection and an
+\textbf{attentional cascade} for efficient computational resource allocation.
+Since the Viola-Jones algorithm typically gives multiple detections,
 a post-processing step is also proposed to reduce detection redundancy using a robustness argument.\cite{ipol.2014.104}
-
 
 \begin{compactitem}
 \item {Features}
 The Viola-Jones object detection procedure classifies images based on the value of simple features.
-There are many motivations for using features rather than the pixels directly. The feature-based system 
+There are many motivations for using features rather than the pixels directly. The feature-based system
 operates much faster than a pixel-based system.
-The simple features used are Haar basis functions. There are three kinds of features used. 
+The simple features used are Haar basis functions. There are three kinds of features used.
 The value of a two-rectangle feature is the difference between the sum of the pixels within
 two rectangular regions. The regions have the same size and shape and are horizontally
 or vertically adjacent (see \autoref{fig:chap4-Haar}). A three-rectangle feature computes the sum within
@@ -100,9 +99,9 @@ before more complex classifiers are called upon to achieve low false positive ra
 Stages in the cascade are constructed by training classifiers using AdaBoost. Starting
 with a two-feature strong classifier, an effective face filter can be obtained by adjusting
 the strong classifier threshold to minimize false negatives. The initial AdaBoost
-threshold, 
+threshold,
 %1
-%2 PT t=1 t, 
+%2 PT t=1 t,
 is designed to yield a low error rate on the training data. A lower
 threshold yields higher detection rates and higher false positive rates. Based on performance
 measured using a validation training set, the two-feature classifier can be
@@ -174,11 +173,307 @@ system..}
 
 \end{compactitem}
 
-\section{PICO}
-Object Detection with Pixel Intensity Comparisons Organized in Decision Trees
+\section{Object Detection with Pixel Intensity Comparisons Organized in Decision Trees}
 \cite{DBLPjournalscorrabs}
 
-\section{NPD}
+\begin{compactitem}
+\item{Weighted Mean Squared Error: WMSE}
+A training data is a set $\{(I_s,v_s,w_s) : s=1,2,..,S\}$
+where $v_s$ is the \textbf{ground truth value} associated with image $I_s$ and $w_s$ is its weight.
+\\ A pixel intensity comparison binary test on a image I is defined as
+
+\begin{equation}
+\label{eq:bintest}
+    bintest(I;l_1,l_2)=
+\begin{cases}
+    0,		& \text{if} I(l_1)\leq I(l_2)\\
+    1,      & \text{otherwise}
+\end{cases}
+\end{equation}\\
+\\ A \textbf{bintest}, $f_i$, has \textbf{only two values: 0 or 1}, so a image will be classified as 0 or 1 by the \textbf{bintest}. If an image is classified to "0", it's in class/cluster $C_0$, otherwise it's in class/cluster $C_1$. \\
+\\ Scalar $\bar{v_0}$ and $\bar{v_1}$ are \textbf{weighted averages of the ground truths} in $C_0$ and $C_1$, respectively.
+
+\begin{equation}
+\label{eq:WAGT0}
+\bar{v_0}=\frac{\sum\nolimits_{(I,v,w) \in C_0} w_i v_i} { \sum\nolimits_{(I,v,w) \in C_0} w_i} =
+\end{equation}
+\[
+\frac{\sum_{i=1}^{\| C_0 \|}  w_i v_i}
+{\sum_{i=1}^{\| C_0 \|}  w_i}
+\]
+
+Let $\| C_{0} \|=n$.\\
+\[
+\bar{v_0}=\frac{\sum_{i=1}^{\| C_0 \|}  w_i v_i}
+{\sum_{i=1}^{\| C_0 \|}  w_i}=\\
+\]
+
+\begin{equation}
+\label{eq:WAGT0-1}
+\frac{\sum_{i=1}^{n}  w_i v_i}
+{\sum_{i=1}^{n}  w_i}
+\end{equation}
+\\
+
+Let $\| C_{1} \|=m$.\\
+\begin{equation}
+\label{eq:WAGT1}
+\bar{v_1}=\frac{\sum\nolimits_{(I,v,w) \in C_1} w_i v_i} { \sum\nolimits_{(I,v,w) \in C_1} w_i} =
+\frac{\sum_{i=1}^{\| C_1 \|}  w_i v_i}
+{\sum_{i=1}^{\| C_1 \|}  w_i}=\\
+\frac{\sum_{i=1}^{m}  w_i v_i}
+{\sum_{i=1}^{m}  w_i}
+\end{equation}
+\\
+
+\begin{equation}
+\label{eq:WMSE}
+\text{WMSE}=\text{WMSE0} + \text{WMSE1}=
+\sum\nolimits_{(I,v,w) \in C_0} w (v-\bar{v_0})^2 +
+\sum\nolimits_{(I,v,w) \in C_1} w (v-\bar{v_0})^2
+\end{equation}
+Why not variance of the C0 and C1 as the error?
+
+\[\text{WMSE0}=\sum_{(I,v,w) \in C_0} w (v-\bar{v_0})^2=\sum_{i=1}^{\| C_0 \|} w_i (v_i - \bar{v_0})^2=
+\sum_{i=1}^{\| C_0 \|} w_i (v_i^2 - 2v_i \bar{v_0} + \bar{v_0}^2)=\]
+
+\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0}\sum_{i=1}^{n} w_i v_i +
+\bar{v_0}^2\sum_{i=1}^{n} w_i=\]
+
+\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0} (\bar{v_0} \cdot \sum_{i=1}^n w_i) +
+\bar{v_0}^2\sum_{i=1}^{n} w_i=\]
+
+\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0} \bar{v_0} \cdot \sum_{i=1}^n w_i
++ \bar{v_0}^2\sum_i^n w_i=\]
+
+\[\sum_{i=1}^{n} w_i v_i^2 - 2\bar{v_0}^2 \sum_{i=1}^n w_i  +
+\bar{v_0}^2 \sum_{i=1}^n w_i=\]
+
+\[\sum_{i=1}^{n} w_i v_i^2 - \bar{v_0}^2 \sum_{i=1}^n w_i = \]
+\\
+Refer to \eqref{eq:WAGT0-1}:
+\[\sum_{i=1}^{n} w_i v_i^2 - (\frac{\sum_{i=1}^{n}  w_i v_i}
+{\sum_{i=1}^{n}  w_i})^2 \sum_{i=1}^n w_i = \]
+
+\begin{equation}
+\label{eq:WMSE00}
+\sum_{i=1}^{n} w_i v_i^2 - \frac{(\sum_{i=1}^{n} w_i v_i)^2}
+{\sum_{i=1}^{n}  w_i} = WMSE0
+\end{equation}
+
+\begin{equation}
+\label{eq:WMSE1}
+\sum_{i=1}^{m} w_i v_i^2 - \frac{(\sum_{i=1}^{m} w_i v_i)^2}
+{\sum_{i=1}^{m}  w_i} = WMSE1
+\end{equation}
+
+
+If we limit the depth of the tree to D and we consider
+B binary tests at each internal node, the training time is
+$O(D \cdot B \cdot S)$ for a training set containing S samples, i.e., it
+is linear in all relevant parameters. This follows from the
+observation that each training sample is tested with B pixel
+intensity comparisons for each internal node it visits on its
+path of length D from the root node to its terminal node. A
+constructed tree needs $O(2^D)$ bytes for storage and its runtime
+speed scales as O(D).
+
+\item{An ensemble of trees for binary classification}
+We use the \textbf{GentleBoost} algorithm \cite{Friedman98additivelogistic},
+a modification of the better known \textbf{real AdaBoost},
+to generate a discriminative ensemble by sequentially fitting a
+decision tree to an appropriate least squares problem.
+We can also use \textbf{Modest AdaBoost} which produces less generalization
+error compared to mentioned algorithms at the cost of somewhat higher training error. \cite{GML327}
+
+In order to generate an ensemble of K trees from a training set, the algorithm proceeds in the
+following steps:
+
+\item{AdaBoost Algorithms}
+discrete adaboost, real adaboost, gentle adaboost, modest adaboost
+
+\begin{algorithm}[htb]
+  \caption{ AdaBoost Algorithm}
+  \label{alg:adaboost}
+  \begin{algorithmic}[1]
+    \Require
+      The set of positive samples for current batch, $P_n$;
+      The set of unlabelled samples for current batch, $U_n$;
+      Ensemble of classifiers on former batches, $E_{n-1}$;
+    \State Extracting the set of reliable negative and/or positive samples $T_n$ from $U_n$ with help of $P_n$;
+    \label{code:fram:extract}
+    \State Training ensemble of classifiers $E$ on $T_n \cup P_n$, with help of data in former batches;
+    \label{code:fram:trainbase}
+    \State $E_n=E_{n-1}cup E$;
+    \label{code:fram:add}
+    \State Classifying samples in $U_n-T_n$ by $E_n$;
+    \label{code:fram:classify}
+    \State Deleting some weak classifiers in $E_n$ so as to keep the capacity of $E_n$;
+    \label{code:fram:select} \\
+    \Return $E_n$;
+    \Ensure
+      Ensemble Trees ;
+  \end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[htb]
+  \caption{ Gentle AdaBoost}
+  \label{alg:GentleAdaBoost}
+  \begin{algorithmic}[1]
+    \Require
+	In order to generate an ensemble of \textbf{\textit{T}} trees from a training set
+	$\textbf{\textit{D}}=\left\{ { (I_s,c_s) | s=1,2,3,...,S}\right\}$.
+	Where $I_s$ is the input image and $c_s$ is the class label. $c_s \in \left\{{-1,+1 } \right\}$.
+	-1 is a non-face sample image and +1 is a face sample image.
+    \State Initialize the weight $w_s$ for each image $I_s$ and its class label $c_s \in
+    	\left\{ {+1,-1}\right\}$ as:
+
+    $w_s=
+	\begin{cases}
+    1/P,	& c_s = +1 \\
+    1/N,    & c_s = -1
+	\end{cases}$
+
+		Where \textbf{P} is the total number of positive samples, $c_s=+1$, and \textbf{N} is the total number
+		of negative samples, $c_s=-1$.
+    \State For $k = 1,2,...,K:$
+    \begin{itemize}
+	\item[a.]{\textbf{Find/Fit} a decision tree $T_k$ by weighted least squares of $c_s$ to $I_s$ with
+	weights $w_s$}. Refer to equation \eqref{eq:WMSE_01}.
+	\item[b.]{Update weights:}\\
+		$w_{s,k+1} = w_{s,k} \cdot \exp^{-c_s T_k(I_s)}$\\
+		where $T_k(I_s)$ denotes the \textbf{real-valued} output of a regression tree $T_k$ on image $I_s$.
+	\item[c.]{Renormalize weights, $w_{s,k+1}$ , so they sum to 1.}
+	\end{itemize}
+    \Ensure
+      Ensemble of classifiers/trees $\left\{ { T_k | k=1,2,3,...,K}\right\}$.
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[htb]
+  \caption{ Modest AdaBoost}\cite{GML327}
+  \label{alg:ModestAdaBoost}
+  \begin{algorithmic}[1]
+    \Require
+	In order to generate an ensemble of \textbf{\textit{T}} trees from a training set
+	$\textbf{\textit{D}}=\left\{ { (I_s,c_s) | s=1,2,3,...,S}\right\}$. Where $I_s$ is
+	the input image and $c_s$ is the class label. $c_s \in \left\{{-1,+1 } \right\}$.
+	-1 is a non-face sample image and +1 is a face sample image.
+    \State Initialize the weight $w_s$ for each image $I_s$ and its class label $c_s \in
+    	\left\{ {+1,-1}\right\}$ as:
+
+    $w_s=
+	\begin{cases}
+    1/P,	& c_s = +1 \\
+    1/N,    & c_s = -1
+	\end{cases}$
+
+		Where P is the total number of positive samples, $c_s=+1$,
+		and N is the total number of negative samples , $c_s=-1$.
+    \State For $k = 1,2,...,K:$
+    \begin{itemize}
+	\item[a.]{\textbf{Find/Fit} a decision tree $T_k$ by weighted least squares of $c_s$ to $I_s$ with
+	weights $w_s$}. Refer to equation \eqref{eq:WMSE_01}.
+	\item[b.]{Update weights:}\\
+		$w_{s,k+1} = w_{s,k} \cdot \exp^{-c_s T_k(I_s)}$\\
+		where $T_k(I_s)$ denotes the real-valued output of tree $T_k$ on image $I_s$.
+	\item[c.]{Renormalize weights so they sum to 1.}
+	\end{itemize}
+    \Ensure
+      Ensemble of classifiers/trees $\left\{ { T_k | k=1,2,3,...,K}\right\}$.
+  \end{algorithmic}
+\end{algorithm}
+
+\item{Sensitivity to noise}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth, keepaspectratio=true]{chap4-pico6.jpg}
+  \caption{Detection rate on the GENKI-SZSL dataset for different noise levels.}
+ \label{fig:chap4-pico6}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth, keepaspectratio=true]{chap4-pico2.jpg}
+  \caption{ROC curves for the GENKI-SZSL/NO-FACES-1 experiment.}
+ \label{fig:chap4-pico2}
+\end{figure}
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth, keepaspectratio=true]{chap4-pico7.jpg}
+  \caption{ROC curves for different number of considered face orientations, n, during the scan of each image.}
+ \label{fig:chap4-pico7}
+\end{figure}
+
+This method performs \textbf{poor} in the presence of \textbf{high noise levels} due to
+\textbf{simplicity of the used binary tests}. The features used by OpenCV detectors
+should be robust in these circumstances as they are based on \textbf{region averaging},
+which corresponds to \textbf{low--pass filtering}.
+
+We use the \textbf{additive (uncorrelated) Gaussian noise model}
+to \textbf{quantitatively} evaluate these effects:
+A sample from a Gaussian distribution with \textbf{zero mean}
+and \textbf{standard deviation} is added to the intensity of each image pixel.
+
+An experiment on the GENKI-SZSL dataset is reported in \autoref{fig:chap4-pico6}.
+We see that the \textbf{detection rate of our system degrades significantly as the noise intensity increases}.
+These adverse effects can be reduced by applying a \textbf{low-pass filter prior to detection}.
+\textbf{This is not necessary as the noise levels in this experiment are uncommon for modern cameras,
+even on mobile devices.}
+
+The images in the GENKI-SZSL dataset are already \textbf{noisy} and contain
+\textbf{compression artefacts}, i.e., they are representative of the ones encountered in real world
+face detection applications.
+
+The other systems based on similar features could be sensitive to high noise levels as well.
+An example of such a commercial system is the Microsoft Kinect human pose recognizer, described in
+
+\item{Detecting rotated faces}
+A simple solution of the object detection under \textbf{general planar rotations} is to scan the
+image at \textbf{multiple orientations}. In our case, this can be performed
+\textbf{without image resampling} as pixel intensity comparison binary tests can be easily rotated
+for a given angle (in our implementation, we use \textbf{precomputed look-up tables} as this
+proved faster than evaluating trigonometric functions at runtime).
+It is not immediately clear if this leads to acceptable
+performance since it could result in poor processing speeds and/or large number of false positives.
+
+We use the \textbf{previously learned face detector} and provide experimental analysis.
+To investigate the \textbf{detection accuracy}, we \textbf{rotate each image} found in the GENKI-SZSL dataset
+for a \textbf{random angle} sampled uniformly from the $[0, 2\pi]$ interval.
+We report \textbf{false positives} on the NO-FACES-1 set. Results can be seen in \autoref{fig:chap4-pico7}.
+
+By comparing the \textbf{ROC curves} to the ones in \autoref{fig:chap4-pico2},
+we can see that the accuracy of the approach is comparable to the OpenCV's LBP-based frontal face detector.
+
+%http://www.tablesgenerator.com/
+\begin{table}[hb]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\multirow{2}{*}{Device} & \multicolumn{4}{l|}{Time {[}ms{]}} \\ \cline{2-5}
+                        & n = 6   & n=8    & n=10   & n=12   \\ \hline
+PC1                     & 15.8    & 20.6   & 25.8   & 31.2   \\ \hline
+PC2                     & 21.6    & 26.8   & 34.5   & 42.9   \\ \hline
+\end{tabular}
+\caption{Average times required to process a 640x480 pixel image at n orientations,
+attempting to find faces larger than 100 x 100 pixels at all possible planar rotations}
+\label{tab:table3}
+\end{table}
+
+Processing speeds can be seen in \autoref{tab:table3}. These results demonstrate
+that our system can perform \textbf{rotation invariant} face detection
+with reasonable accuracy in \textbf{real-time} using a \textbf{single core} of a modern personal computer.
+
+\item{Qualitative results}
+A video demonstrating \textbf{rotation invariant} face detection is available at
+\url{http://youtu.be/1lXfm-PZz0Q}.
+Furthermore, demo applications can be downloaded from \url{http://public.tel.fer.hr/odet/}.
+\textbf{Complete source code} is provided at \url{https://github.com/nenadmarkus/pico}.
+
+\end{compactitem}
+
 
 %----------------------------------------------------------------------------------------
 
