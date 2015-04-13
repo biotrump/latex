@@ -28,7 +28,7 @@ Since the Viola-Jones algorithm typically gives multiple detections,
 a post-processing step is also proposed to reduce detection redundancy using a robustness argument.\cite{ipol.2014.104}
 
 \begin{compactitem}
-\item {Features}
+\item {Features}\\
 The Viola-Jones object detection procedure classifies images based on the value of simple features.
 There are many motivations for using features rather than the pixels directly. The feature-based system
 operates much faster than a pixel-based system.
@@ -51,17 +51,19 @@ Figure (C) shows a three-rectangle feature, and (D) a four-rectangle feature.}
   \label{fig:chap4-Haar}
 \end{figure}
 
-\item {Integral Image}
+\item {Integral Image}\\
 Rectangle features can be computed very rapidly using an intermediate representation
 for the image which we call the integral image. The integral image at location x, y
-contains the sum of the pixels above and to the left of x, y, inclusive:
-$ii(x; y) = X x0x;y0yi(x0; y0);$
+contains the sum of the pixels above and to the left of x, y, inclusive:\\
+$ii(x, y) = \sum\limits_{x'<=x, y'<=y} i(x',y')$\\
 where $ii(x, y)$ is the integral image and $i(x, y)$ is the original image (see \autoref{fig:chap4-Integral}).
 Using the following pair of recurrences:
-%s(x; y) = s(x; y 􀀀 1) + i(x; y) (1)
-%ii(x; y) = ii(x 􀀀 1; y) + s(x; y) (2)
-%(where s(x; y) is the cumulative row sum, s(x;􀀀1) = 0, and ii(􀀀1; y) = 0) the
-integral image can be computed in one pass over the original image.
+\begin{equation}
+\label{eq:ii-recursive}
+s(x,y) = s(x,y-1)+i(x,y) \\
+ii(x,y) = ii(x-1,y)+s(x,y)
+\end{equation}
+the integral image can be computed in one pass over the original image.
 Using the integral image any rectangular sum can be computed in four array references
 (see  \autoref{fig:chap4-Integral4}). Clearly the difference between two rectangular sums can be
 computed in eight references. Since the two-rectangle features defined above involve
@@ -340,7 +342,7 @@ discrete adaboost, real adaboost, gentle adaboost, modest adaboost
     \State For $k = 1,2,...,K:$
     \begin{itemize}
 	\item[a.]{\textbf{Find/Fit} a decision tree $T_k$ by weighted least squares of $c_s$ to $I_s$ with
-	weights $w_s$}. Refer to equation \eqref{eq:WMSE_01}.
+	weights $w_s$}. Refer to equation \eqref{eq:WMSE1}.
 	\item[b.]{Update weights:}\\
 		$w_{s,k+1} = w_{s,k} \cdot \exp^{-c_s T_k(I_s)}$\\
 		where $T_k(I_s)$ denotes the \textbf{real-valued} output of a regression tree $T_k$ on image $I_s$.
@@ -374,7 +376,7 @@ discrete adaboost, real adaboost, gentle adaboost, modest adaboost
     \State For $k = 1,2,...,K:$
     \begin{itemize}
 	\item[a.]{\textbf{Find/Fit} a decision tree $T_k$ by weighted least squares of $c_s$ to $I_s$ with
-	weights $w_s$}. Refer to equation \eqref{eq:WMSE_01}.
+	weights $w_s$}. Refer to equation \eqref{eq:WMSE1}.
 	\item[b.]{Update weights:}\\
 		$w_{s,k+1} = w_{s,k} \cdot \exp^{-c_s T_k(I_s)}$\\
 		where $T_k(I_s)$ denotes the real-valued output of tree $T_k$ on image $I_s$.

@@ -23,12 +23,25 @@ Sampling is the process of recording the values of a signal at given points in t
 \end{figure}
 
 \section{ADC and DAC}\cite{smith1997dspbook}
-Most of the signals directly encountered in science and engineering are continuous: light intensity that changes with distance; voltage that varies over time; etc. Analog-to-Digital Conversion (ADC) and Digital-to-Analog Conversion (DAC) are the processes that allow digital computers to interact with these everyday signals. Digital information is different from its continuous counterpart in two important respects: it is sampled, and it is quantized. Both of these restrict how much information a digital signal can
-contain. This chapter describes the sampling frequency, number of bits, and type of analog filtering needed for converting between the analog and digital.
+Most of the signals directly encountered in science and engineering are continuous:
+light intensity that changes with distance; voltage that varies over time; etc.
+Analog-to-Digital Conversion (ADC) and Digital-to-Analog Conversion (DAC) are
+the processes that allow digital computers to interact with these everyday signals.
+Digital information is different from its continuous counterpart in two important respects:
+it is sampled, and it is quantized. Both of these restrict how much information a digital signal can
+contain. This chapter describes the sampling frequency, number of bits, and type of analog
+filtering needed for converting between the analog and digital.
 
 \begin{compactitem}
 \item \textbf{Quantization}
-Quantization is the process of representing the analog voltage from the sample-and-hold circuit by a fixed number of bits. The input analog voltage (or current) is compared to a set of pre-defined voltage (or current) levels. Each of the levels is represented by a unique binary number, and the binary number that corresponds to the level that is closest to the analog voltage is chosen to represent that sample. This process rounds the analog voltage to the nearest level, which means that the digital representation is an approximation to the analog voltage. There are a few methods for quantizing samples. The most commonly used ones are the dual slope method and the successive approximation.
+Quantization is the process of representing the analog voltage from the sample-and-hold
+circuit by a fixed number of bits. The input analog voltage (or current) is compared to
+a set of pre-defined voltage (or current) levels. Each of the levels is represented
+by a unique binary number, and the binary number that corresponds to the level that is
+closest to the analog voltage is chosen to represent that sample. This process rounds
+the analog voltage to the nearest level, which means that the digital representation
+is an approximation to the analog voltage. There are a few methods for quantizing samples.
+The most commonly used ones are the dual slope method and the successive approximation.
 
 \begin{figure}[ht]
   \centering
@@ -39,11 +52,13 @@ Quantization is the process of representing the analog voltage from the sample-a
 
 
 \item \textbf{The Sampling Theorem}\cite{dsp-nyquist}\\
-The sampling theorem states that for a limited bandwidth (band-limited) signal with maximum frequency $f_{max}$, the equally spaced sampling frequency $f_s$ must be greater than twice of the maximum frequency $f_{max}$, i.e.,
+The sampling theorem states that for a limited bandwidth (band-limited) signal with maximum frequency $f_{max}$,
+the equally spaced sampling frequency $f_s$ must be greater than twice of the maximum frequency $f_{max}$, i.e.,
 $f_s > 2·f_{max}$
 in order to have the signal be uniquely reconstructed without aliasing.
 
-The frequency $2·f_{max}$ is called the \textbf{Nyquist sampling rate}. Half of this value, $f_{max}$, is sometimes called the \textbf{Nyquist frequency}.
+The frequency $2·f_{max}$ is called the \textbf{Nyquist sampling rate}. Half of this value, $f_{max}$,
+is sometimes called the \textbf{Nyquist frequency}.
 
 \end{compactitem}
 
@@ -66,8 +81,6 @@ A Fourier series expansion designed to represent a given function
    \mathbf{ b_{n} = \frac{1}{\boldsymbol{\pi}} \, \int_{-\boldsymbol{\pi}}^{\boldsymbol{\pi}} f(y)\,
    \boldsymbol{\sin} (n\,y) \, dy}.
 \end{equation}
-(For a derivation of these equations see Sec.\ref{expfs} and Eqs.(\ref{Eq:piex1}) and
-  (\ref{Eq:piex2}).)\\
 
 \noindent The first term of the expansion
 \begin{equation}
@@ -175,25 +188,25 @@ and can be expressed in terms of the Fourier cosine transform of $\mathbf{f_{e}(
 \item {Discrete Fourier Transform}
 
 \begin{figure}[ht]
-  \label{fig:chap2-DFT}
   \centering
 	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{chap2-DFT.png}
 	\caption{}
+  \label{fig:chap2-DFT}
 \end{figure}\cite{smith1997scientist}
 
 \item {Fast Fourier Transform}
 \begin{figure}
-  \label{fig:chap2-FFT}
   \centering
 	\includegraphics[width=\textwidth, keepaspectratio=true]{chap2-FFT.png}
-\caption{Comparing the \textbf{real} and \textbf{complex} DFTs.
-The real DFT takes an \textbf{N point} time domain signal and creates \textbf{two N/2-1} point frequency domain %signals. The \textbf{complex DFT} takes two N point time domain signals and creates two N point frequency domain signals. The crosshatched regions shows
-the values common to the two transforms.}
+	\caption{Comparing the \textbf{real} and \textbf{complex} DFTs.
+The real DFT takes an \textbf{N point} time domain signal and creates \textbf{two N/2-1} point frequency domain signals.
+The \textbf{complex DFT} takes two N point time domain signals and creates two N point frequency domain signals.
+The crosshatched regions shows the values common to the two transforms.}
+  \label{fig:chap2-FFT}
 \end{figure}
 
-
 The \textbf{FFT} is based on the \textbf{complex DFT}.
-Since the FFT is an algorithm for calculating the complex DFT. \autoref{chap2-FFT}
+Since the FFT is an algorithm for calculating the complex DFT. \autoref{fig:chap2-FFT}
 compares how the real DFT and the complex DFT store data.\\
 
 The \textbf{real DFT} transforms an \textbf{N point} time domain signal into
